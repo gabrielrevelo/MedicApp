@@ -13,7 +13,7 @@ const controllerPatients = {
     }
   },
   createPatient: async (req, res, next) => {
-    const { name, email, password, phoneNumber } = req.body;
+    const { name, email, password, phoneNumber,image } = req.body;
     let letters = "0123456789ABCDEF";
     var objectId = "630fff";
     for (var i = 0; i < 8; i++) {
@@ -25,6 +25,7 @@ const controllerPatients = {
       email,
       password,
       phoneNumber,
+      image,
       active: true,
     };
     try {
@@ -51,13 +52,14 @@ const controllerPatients = {
   },
   updatePatient: async (req, res, next) => {
     const { idPatient } = req.params;
-    const { name, email, password, phoneNumber } = req.body;
+    const { name, email, password, phoneNumber, image } = req.body;
     try {
       const patientFound = Patients.find((patient) => patient.id === idPatient);
       patientFound.name = name;
       patientFound.email = email;
       patientFound.password = password;
       patientFound.phoneNumber = phoneNumber;
+      patientFound.image = image;
       let jsonPatients = JSON.stringify(Patients);
       fs.writeFile(path.join(__dirname, '..', 'dummyModels', 'Patient.json'), jsonPatients, (err) => {
         if (err) throw err;

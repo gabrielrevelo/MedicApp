@@ -24,6 +24,8 @@ const controllerAppointments = {
         hourAppointment: Appointments[i].hour,
         timeAppointment: doctorsData.schedule[0].space + " min",
         priceAppointment: doctorsData.schedule[0].checkUpPrice,
+        cityAppointment: doctorsData.city,
+        countryAppointment: doctorsData.country,
         adressAppointment: doctorsData.address,
         date: Appointments[i].date,
         additionalComment: Appointments[i].additionalComment
@@ -80,6 +82,8 @@ const controllerAppointments = {
         timeAppointment: doctorsData.schedule[0].space + " min",
         priceAppointment: doctorsData.schedule[0].checkUpPrice,
         adressAppointment: doctorsData.address,
+        cityAppointment: doctorsData.city,
+        countryAppointment: doctorsData.country,
         date: AppointmentFound.date,
         additionalComment: AppointmentFound.additionalComment
       }

@@ -11,6 +11,7 @@
     "email": "agiorio3@cocolog-nifty.com",
     "password": "mpy1Xb6s6K",
     "phoneNumber": "(993) 4587063",
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/Synthesia-Avatar-960x500.jpg",
     "active": true
   }
 ```
@@ -24,6 +25,8 @@
     "name": "Randell Boshere",
     "specialities": ["Endocrinología", "Hematología"],
     "license": "9372239038",
+    "country": "Argentina",
+    "city": "Mar del Plata",
     "address": "4 Badeau Center",
     "email": "rboshere0@nasa.gov",
     "password": "F5b6fOHgL7",
@@ -32,6 +35,7 @@
       { "hour": "09:00 - 19:00", "space": 20, "checkUpPrice": "$239.89" }
     ],
     "active": true,
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/Synthesia-Avatar-960x500.jpg",
     "rating": 1
   }
 ```
@@ -44,6 +48,7 @@
     "name": "Johna",
     "email": "jfellij@trellian.com",
     "password": "yTfnqm8",
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/Synthesia-Avatar-960x500.jpg",
     "active": true
   }
 ```
@@ -66,6 +71,9 @@
             "timeAppointment": "30 min",
             "priceAppointment": "$538.21",
             "adressAppointment": "86 Springs Drive",
+            "cityAppointment": "Argentina",
+            "countryAppointment": "Buenos Aires",
+            "address": "46417 Loftsgordon Center",
             "date": "9/14/2021",
             "additionalComment": "nibh in hac habitasse platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam"
         },

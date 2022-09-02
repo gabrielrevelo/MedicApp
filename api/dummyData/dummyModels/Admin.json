@@ -4,139 +4,159 @@
     "name": "Sinclare",
     "email": "smcmyler0@linkedin.com",
     "password": "YJhf3Q",
-    "active": true
+    "active": true,
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/synthesia-avatar-960x500.jpg"
   },
   {
     "id": "630fe45ffc13ae232300000b",
     "name": "Lexis",
     "email": "losment1@go.com",
     "password": "gdoRsqtpx",
-    "active": false
+    "active": false,
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/synthesia-avatar-960x500.jpg"
   },
   {
     "id": "630fe45ffc13ae232300000c",
     "name": "Beverley",
     "email": "bhansberry2@ucsd.edu",
     "password": "kYnWF2Wfw",
-    "active": false
+    "active": false,
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/synthesia-avatar-960x500.jpg"
   },
   {
     "id": "630fe45ffc13ae232300000d",
     "name": "Carny",
     "email": "csvanini3@blinklist.com",
     "password": "E1u4ZYKPpCn",
-    "active": true
+    "active": true,
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/synthesia-avatar-960x500.jpg"
   },
   {
     "id": "630fe45ffc13ae232300000e",
     "name": "Abby",
     "email": "aseignior4@indiatimes.com",
     "password": "Dj8NOiTI2qo",
-    "active": true
+    "active": true,
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/synthesia-avatar-960x500.jpg"
   },
   {
     "id": "630fe45ffc13ae232300000f",
     "name": "Kit",
     "email": "kpurviss5@vk.com",
     "password": "RtF6OxwY",
-    "active": false
+    "active": false,
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/synthesia-avatar-960x500.jpg"
   },
   {
     "id": "630fe45ffc13ae2323000010",
     "name": "Herbert",
     "email": "hadamowitz6@hhs.gov",
     "password": "reRk1XYH",
-    "active": true
+    "active": true,
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/synthesia-avatar-960x500.jpg"
   },
   {
     "id": "630fe45ffc13ae2323000011",
     "name": "Haleigh",
     "email": "hmenear7@ted.com",
     "password": "1cvjNyBu5SCA",
-    "active": false
+    "active": false,
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/synthesia-avatar-960x500.jpg"
   },
   {
     "id": "630fe45ffc13ae2323000012",
     "name": "Holly",
     "email": "hmcrae8@de.vu",
     "password": "qKvk64",
-    "active": true
+    "active": true,
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/synthesia-avatar-960x500.jpg"
   },
   {
     "id": "630fe45ffc13ae2323000013",
     "name": "Inglis",
     "email": "imccaughan9@home.pl",
     "password": "fblUnyG74L",
-    "active": false
+    "active": false,
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/synthesia-avatar-960x500.jpg"
   },
   {
     "id": "630fe45ffc13ae2323000014",
     "name": "Ainslee",
     "email": "abrabhama@msn.com",
     "password": "lYrXY6fzt",
-    "active": true
+    "active": true,
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/synthesia-avatar-960x500.jpg"
   },
   {
     "id": "630fe45ffc13ae2323000015",
     "name": "Kipp",
     "email": "kcarverb@scientificamerican.com",
     "password": "bSkvELkdodcJ",
-    "active": false
+    "active": false,
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/synthesia-avatar-960x500.jpg"
   },
   {
     "id": "630fe45ffc13ae2323000016",
     "name": "Nicolea",
     "email": "ngiacaponic@alexa.com",
     "password": "UnCF3RC",
-    "active": false
+    "active": false,
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/synthesia-avatar-960x500.jpg"
   },
   {
     "id": "630fe45ffc13ae2323000017",
     "name": "Gunther",
     "email": "gmacgorried@smh.com.au",
     "password": "JPEpDi7UD",
-    "active": true
+    "active": true,
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/synthesia-avatar-960x500.jpg"
   },
   {
     "id": "630fe45ffc13ae2323000018",
     "name": "Aylmar",
     "email": "aedmotte@nhs.uk",
     "password": "eXl9HprKK7M",
-    "active": false
+    "active": false,
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/synthesia-avatar-960x500.jpg"
   },
   {
     "id": "630fe45ffc13ae2323000019",
     "name": "Duane",
     "email": "dmullordf@apache.org",
     "password": "fZd0cKnPmW",
-    "active": true
+    "active": true,
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/synthesia-avatar-960x500.jpg"
   },
   {
     "id": "630fe45ffc13ae232300001a",
     "name": "Nestor",
     "email": "nbenettolog@mashable.com",
     "password": "Qb1VGGguYKGm",
-    "active": true
+    "active": true,
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/synthesia-avatar-960x500.jpg"
   },
   {
     "id": "630fe45ffc13ae232300001b",
     "name": "Dorelle",
     "email": "dionescoh@independent.co.uk",
     "password": "jS5Xtx",
-    "active": true
+    "active": true,
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/synthesia-avatar-960x500.jpg"
   },
   {
     "id": "630fe45ffc13ae232300001c",
     "name": "Linnie",
     "email": "lagdahli@posterous.com",
     "password": "nQxWrOMLIcE",
-    "active": false
+    "active": false,
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/synthesia-avatar-960x500.jpg"
   },
   {
     "id": "630fe45ffc13ae232300001d",
     "name": "Johna",
     "email": "jfellij@trellian.com",
     "password": "yTfnqm8",
-    "active": false
+    "active": false,
+    "image": "https://www.futuroprossimo.it/wp-content/uploads/2021/12/synthesia-avatar-960x500.jpg"
   }
 ]

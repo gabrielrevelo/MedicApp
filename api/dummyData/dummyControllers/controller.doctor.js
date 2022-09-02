@@ -12,7 +12,7 @@ const controllerDoctors = {
     }
   },
   createDoctor: async (req, res, next) => {
-    const { name, specialities, license, address, hour, space, checkUpPrice, email, password, phoneNumber } = req.body;
+    const { name, specialities, license, country, city, address, hour, space, checkUpPrice, email, password, phoneNumber, image } = req.body;
     let letters = "0123456789ABCDEF";
     var objectId = "630fff";
     for (var i = 0; i < 8; i++) {
@@ -23,6 +23,8 @@ const controllerDoctors = {
       name,
       specialities,
       license,
+      country,
+      city,
       address,
       email,
       password,
@@ -36,6 +38,7 @@ const controllerDoctors = {
       ],
       active: true,
       rating: 0,
+      image,
     };
     try {
       Doctors.push(newDoctor);
@@ -62,12 +65,15 @@ const controllerDoctors = {
   },
   updateDoctor: async (req, res, next) => {
     const { idDoctor } = req.params;
-    const { name, specialities, license, address, hour, space, checkUpPrice, email, password, phoneNumber } = req.body;
+    const { name, specialities, license, address,country,city, hour, space, checkUpPrice, email, password, phoneNumber, image } = req.body;
     try {
       const DoctorFound = Doctors.find((Doctor) => Doctor.id === idDoctor);
       DoctorFound.name = name;
       DoctorFound.specialities = specialities;
       DoctorFound.license = license;
+      DoctorFound.country = country;
+      DoctorFound.city = city;
+      DoctorFound.address = address;
       DoctorFound.address = address;
       DoctorFound.schedule[0].hour = hour;
       DoctorFound.schedule[0].space = space;
@@ -75,6 +81,7 @@ const controllerDoctors = {
       DoctorFound.email = email;
       DoctorFound.password = password;
       DoctorFound.phoneNumber = phoneNumber;
+      DoctorFound.image = image;
       let jsonDoctors = JSON.stringify(Doctors);
       fs.writeFile(path.join(__dirname, '..', 'dummyModels', 'Doctor.json'), jsonDoctors, (err) => {
         if (err) throw err;
