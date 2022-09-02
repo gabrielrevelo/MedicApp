@@ -5,7 +5,7 @@ const dummyRoutes = require('../../dummyData/dummyRoutes/index.routes');
 const routesDoctor = require('./doctor')
 const routesPatient = require('./patient');
 const routesAdmin = require('./admin');
-
+const routesAppoinment = require('./appointment');
 
 /* GET home page. */
 router.use('/users',routesUser );
@@ -22,6 +22,7 @@ router.use('/patients', routesPatient);
 /* Admin routes */
 router.use('/admins', routesAdmin);
 
-
+/* Appointment routes */
+router.use('/appointments', routesAppoinment);
 
 module.exports = router;
