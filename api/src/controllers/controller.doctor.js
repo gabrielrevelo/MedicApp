@@ -1,4 +1,5 @@
 const Doctor = require("../models/Doctor");
+const mailer = require("../config/sendMails/mailer");
 
 const controllerDoctors = {
   getAll: async (req, res, next) => {
@@ -36,6 +37,7 @@ const controllerDoctors = {
         active: true,
       });
       await newDoctor.save();
+      mailer.sendMailRegister(newDoctor, "Doctor"); //Enviamos el mail de Confirmación de Registro
       return res.status(201).send({ newDoctor });
     } catch (error) {
       return res.status(error.code || 500).send({ errors: error.message });

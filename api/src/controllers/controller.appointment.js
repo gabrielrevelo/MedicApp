@@ -1,4 +1,5 @@
 const Appointment = require("../models/Appointment");
+const mailer = require("../config/sendMails/mailer");
 
 const controllerAppointments = {
   getAll: async (req, res, next) => {
@@ -27,6 +28,7 @@ const controllerAppointments = {
     try {
       const newAppointment = new Appointment({ doctor, patient, date, hour, paymentProcessed });
       await newAppointment.save();
+      mailer.sendMailAppointment(newAppointment); //Enviamos el mail de Confirmación de Cita al Paciente y Doctor. 
       return res.status(201).send({ newAppointment: newAppointment });
     } catch (error) {
       return res.status(error.code || 500).send({ errors: error.message });

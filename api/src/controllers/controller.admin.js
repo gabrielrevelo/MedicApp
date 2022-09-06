@@ -1,4 +1,5 @@
 const Admin = require("../models/Admin");
+const mailer = require("../config/sendMails/mailer");
 
 const controllerAdmins = {
     getAll: async (req, res, next) => {
@@ -22,6 +23,7 @@ const controllerAdmins = {
                 email,
                 password,
             });
+            mailer.sendMailRegister(newAdmin, "Admin"); //Enviamos el mail de Confirmación de Registro
             res.status(200).json({succes: true, data: newAdmin})
         } catch (error) {
             return res.status(400).json({ succes: false, message: error});
