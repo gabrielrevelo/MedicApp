@@ -9,7 +9,6 @@ const paramIdAppointmentValidator = [
     .escape(),
   validationFormat
 ];
-
 const bodyAppointmentValidatorPOST = [
   body("doctor")
     .trim()
@@ -25,11 +24,22 @@ const bodyAppointmentValidatorPOST = [
     .trim()
     .notEmpty().withMessage("El campo hora de cita está vacio")
     .matches('^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$'),
-  body("additionalComment")
+  body("paymentProcessed")
     .trim()
-    .notEmpty().withMessage("El campo comentario adicional está vacio")
-    .isLength({min: 50}).withMessage("Comentario: Se requieren al menos 50 caracteres.")
-    .optional({nullable: true, checkFalsy: true}),
+    .notEmpty().withMessage("El campo estado de pago está vacio")
+    .isBoolean().withMessage("El campo estado de pago debe ser un valor booleano"),
+  validationFormat
+];
+
+const bodyAppointmentValidatorRATING = [
+  body("score")
+    .trim()
+    .notEmpty().withMessage("El campo score está vacio")
+    .isFloat({ min: 0, max: 5 }).withMessage("El campo score debe ser un número decimal entre 0 - 5"),
+  body("comment")
+    .trim()
+    .notEmpty().withMessage("Debes escribir una opinión sobre el servicio")
+    .isLength({ min: 15 }).withMessage("Comentario: Se requieren al menos 15 caracteres."),
   validationFormat
 ];
 
@@ -44,10 +54,10 @@ const bodyAppointmentValidatorPATCH = [
     .notEmpty().withMessage("El campo hora de cita está vacio")
     .matches('^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')
     .optional({nullable: true, checkFalsy: true}),
-  body("additionalComment")
+  body("paymentProcessed")
     .trim()
-    .notEmpty().withMessage("El campo comentario adicional está vacio")
-    .isLength({min: 50}).withMessage("Comentario: Se requieren al menos 50 caracteres.")
+    .notEmpty().withMessage("El campo estado de pago está vacio")
+    .isBoolean().withMessage("El campo estado de pago debe ser un valor booleano")
     .optional({nullable: true, checkFalsy: true}),
   validationFormat
 ];
@@ -55,5 +65,6 @@ const bodyAppointmentValidatorPATCH = [
 module.exports = {
   paramIdAppointmentValidator,
   bodyAppointmentValidatorPOST,
-  bodyAppointmentValidatorPATCH
+  bodyAppointmentValidatorPATCH,
+  bodyAppointmentValidatorRATING
 }

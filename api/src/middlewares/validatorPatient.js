@@ -17,8 +17,7 @@ const bodyPatientValidatorPOST = [
   body("email")
     .trim()
     .notEmpty().withMessage("El campo email está vacio")
-    .isEmail().withMessage("Formato de email incorrecto")
-    .normalizeEmail(),
+    .isEmail().withMessage("Formato de email incorrecto"),
   body("password")
     .trim()
     .notEmpty().withMessage("El campo password está vacio")
@@ -44,7 +43,6 @@ const bodyPatientValidatorPATCH = [
     .trim()
     .notEmpty().withMessage("El campo email está vacio")
     .isEmail().withMessage("Formato de email incorrecto")
-    .normalizeEmail()
     .optional({nullable: true, checkFalsy: true}),
   body("password")
     .trim()

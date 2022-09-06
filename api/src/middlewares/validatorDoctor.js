@@ -17,11 +17,11 @@ const bodyDoctorValidatorPOST = [
   body("country")
     .trim()
     .notEmpty().withMessage("El campo país está vacio")
-    .matches(/^[A-Z a-z]{10,100}$/).withMessage("El campo país debe contener solo letras."),
+    .matches(/^[A-Z a-z]{5,30}$/).withMessage("El campo país debe contener solo letras."),
   body("city")
     .trim()
     .notEmpty().withMessage("El campo ciudad está vacio")
-    .matches(/^[A-Z a-z]{10,100}$/).withMessage("El campo ciudad debe contener solo letras."),
+    .matches(/^[A-Z a-z]{5,50}$/).withMessage("El campo ciudad debe contener solo letras."),
   body("address")
     .trim()
     .notEmpty().withMessage("El campo dirección está vacio"),
@@ -41,8 +41,7 @@ const bodyDoctorValidatorPOST = [
     .isFloat({ min: 0, max: 5 }).withMessage("El campo rating debe ser un número decimal entre 0 - 5"),
   body("specialities")
     .trim()
-    .notEmpty().withMessage("La lista de especialidades está vacia")
-    .isArray().withMessage("La lista debe contener entre 1 - 5 especialidades"),
+    .notEmpty().withMessage("La lista de especialidades está vacia"),
   body("image")
     .trim()
     .notEmpty().withMessage("El campo imagen está vacio")
@@ -51,8 +50,7 @@ const bodyDoctorValidatorPOST = [
   body("email")
     .trim()
     .notEmpty().withMessage("El campo email está vacio")
-    .isEmail().withMessage("Formato de email incorrecto")
-    .normalizeEmail(),
+    .isEmail().withMessage("Formato de email incorrecto"),
   body("password")
     .trim()
     .notEmpty().withMessage("El campo password está vacio")
@@ -75,12 +73,12 @@ const bodyDoctorValidatorPATCH = [
   body("country")
     .trim()
     .notEmpty().withMessage("El campo país está vacio")
-    .isAlpha().withMessage("El campo país debe contener solo letras.")
+    .matches(/^[A-Z a-z]{5,30}$/).withMessage("El campo país debe contener solo letras.")
     .optional({ nullable: true, checkFalsy: true }),
   body("city")
     .trim()
     .notEmpty().withMessage("El campo ciudad está vacio")
-    .isAlpha().withMessage("El campo ciudad debe contener solo letras.")
+    .matches(/^[A-Z a-z]{5,50}$/).withMessage("El campo ciudad debe contener solo letras.")
     .optional({ nullable: true, checkFalsy: true }),
   body("address")
     .trim()
@@ -107,7 +105,6 @@ const bodyDoctorValidatorPATCH = [
   body("specialities")
     .trim()
     .notEmpty().withMessage("La lista de especialidades está vacia")
-    .isArray({ min: 1, max: 5 }).withMessage("La lista debe contener entre 1 - 5 especialidades")
     .optional({ nullable: true, checkFalsy: true }),
   body("image")
     .trim()
@@ -118,7 +115,6 @@ const bodyDoctorValidatorPATCH = [
     .trim()
     .notEmpty().withMessage("El campo email está vacio")
     .isEmail().withMessage("Formato de email incorrecto")
-    .normalizeEmail()
     .optional({ nullable: true, checkFalsy: true }),
   body("password")
     .trim()

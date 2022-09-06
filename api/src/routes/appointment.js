@@ -1,7 +1,7 @@
 const express = require('express');
 const appointmentRouter = express.Router();
 const controllerAppointments = require("../controllers/controller.appointment");
-const { paramIdAppointmentValidator, bodyAppointmentValidatorPOST, bodyAppointmentValidatorPATCH } = require("../middlewares/validatorAppointment.js");
+const { paramIdAppointmentValidator, bodyAppointmentValidatorPOST, bodyAppointmentValidatorPATCH, bodyAppointmentValidatorRATING } = require("../middlewares/validatorAppointment.js");
 
 /* APPOINTMENTS */
 /* Get All Appointments */
@@ -15,7 +15,7 @@ appointmentRouter.patch("/:idAppointment", paramIdAppointmentValidator, bodyAppo
 /* Change Status(Active) Appointment*/
 appointmentRouter.patch("/status/:idAppointment", paramIdAppointmentValidator, controllerAppointments.changeStatus);
 /* Add Rating - Appointment*/
-appointmentRouter.patch("/addRating/:idAppointment", paramIdAppointmentValidator, controllerAppointments.addRating);
+appointmentRouter.patch("/addRating/:idAppointment", paramIdAppointmentValidator, bodyAppointmentValidatorRATING, controllerAppointments.addRating);
 /* Delete Appointment */
 appointmentRouter.delete("/:idAppointment", paramIdAppointmentValidator, controllerAppointments.deleteAppointment);
 
