@@ -6,9 +6,13 @@ const routesDoctor = require('./doctor')
 const routesPatient = require('./patient');
 const routesAdmin = require('./admin');
 const routesAppoinment = require('./appointment');
+const routesAuth = require ('./auth')
 
 /* GET home page. */
 router.use('/users',routesUser );
+
+/* Auth routes */
+router.use('/auth',routesAuth );
 
 /* GET dummy routes. */
 router.use('/dummy',dummyRoutes );

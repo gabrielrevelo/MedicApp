@@ -6,6 +6,7 @@
     "start": "nodemon index.js"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
@@ -13,6 +14,7 @@
     "dotenv": "^16.0.2",
     "express": "~4.16.1",
     "express-validator": "^6.14.2",
+    "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.4",
     "mongodb": "^4.9.0",
     "mongoose": "^6.5.4",
