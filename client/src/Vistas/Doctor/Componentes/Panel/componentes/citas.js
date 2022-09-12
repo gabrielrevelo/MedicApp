@@ -18,12 +18,12 @@ const Citas = () => {
     return (
         <div>
                 <section>
-            <p className="text-white text-xl font-poppins  mt-8 ml-4">Mis <span className="text-[#1479FF]">citas</span> de la semana:</p>
+            <p className="text-[#292F53] text-xl font-poppins  mt-8 ml-4">Mis <span className="text-[#1479FF]">citas</span> de la semana:</p>
             {doctor?.appointments.map(cita =>{
                 return(
                     <div className= " m-2 p-4 font-poppins text-[#1479FF]">
-                    <p> Fecha: <span className=" text-white font-raleway">{cita.date.split('T')[0]}</span></p>
-                    <p>Hora: <span className=" text-white font-raleway">{cita.hour}</span> </p>
+                    <p> Fecha: <span className=" text-[#292F53] font-raleway">{cita.date.split('T')[0]}</span></p>
+                    <p>Hora: <span className=" text-[#292F53] font-raleway">{cita.hour}</span> </p>
                     <hr className=" w-5 mt-7 border-solid border-1 border-[#1479FF]"></hr>
                     </div>
                 )
