@@ -5,7 +5,9 @@ export const generalDoctorSlice = createSlice({
   initialState: {
     doctors: [],
     detailDoctor: {},
-    specialities: []
+    specialities: [],
+    querySearch: [],
+    topDoctors: []
   },
   reducers: {
     getAllDoctors: (state, action) => {
@@ -14,6 +16,14 @@ export const generalDoctorSlice = createSlice({
 
     getDoctorById: (state, action) => {
       state.detailDoctor = action.payload;
+    },
+
+    getDoctorsByDates: (state, action) => {
+      state.querySearch = action.payload;
+    },
+
+    getTopDoctors: (state, action) => {
+      state.topDoctors = action.payload;
     },
 
     changeStatus: (state) => {
@@ -35,7 +45,9 @@ export const {
   getDoctorById,
   changeStatus,
   editDoctor,
-  postDoctor
+  postDoctor,
+  getDoctorsByDates,
+  getTopDoctors
 } = generalDoctorSlice.actions;
 
 export default generalDoctorSlice.reducer;

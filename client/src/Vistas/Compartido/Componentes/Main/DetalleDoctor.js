@@ -12,6 +12,8 @@ import {Link} from 'react-router-dom'
 function DetalleDoctor (){
 
   const { idDoctor } = useParams();
+
+  
   const dispatch = useDispatch();
   let doctor = useSelector((state)=> state.doctores.detail.data)
   const [selectedDate, setSelectedDate] = useState('')
@@ -55,11 +57,14 @@ function DetalleDoctor (){
   useEffect(() => {
     dispatch(getDocbyId(idDoctor))
   },[dispatch, idDoctor]);
+  
 
  localStorage.setItem('hour',selectedHour)
  localStorage.setItem('date',selectedDate)
   console.log(selectedDate ,'selected date');
   console.log(selectedHour, 'selectred hour');
+
+  const user = JSON.parse(window.localStorage.getItem('User'))
 
   return(
       <>
@@ -80,11 +85,7 @@ function DetalleDoctor (){
             <p className='font-raleway text-[#292f53b8] text-sm mt-2 mb-2 flex flex-row '> <span className='mr-2'><HiLocationMarker/></span>  {doctor?.city}, <span className='ml-2'>{doctor?.country}</span></p>
             <p className='font-raleway text-[#292f536f] mt-2 mb-2 '> Precio consulta: {doctor?.checkUpPrice}</p>
 
-              <Link to={ "/dummy/doctors/" + idDoctor + "/stripe"}>
-
-              Pagar consulta.
-
-            </Link>
+              
 
             <span className='font-raleway w-fit text-[#1479FF] align-middle rounded flex flex-row '> <span className='mt-1'><HiOutlinePhone/></span>: <span className='text-[#1479FF] tracking-[.10em]'>{doctor?.phoneNumber}</span> </span>
 
@@ -133,9 +134,10 @@ function DetalleDoctor (){
               <span></span>
               )}
           {selectedDate.length >1 && selectedHour.length>1 ? (
-            <div className=" flex justify-center  ">
-              <button className='font-poppins text-lg text-white  focus:bg-[#292F53] rounded bg-[#1479FF] w-40 h-10 m-3 mt-9 mb-8'>Reserva tu cita </button>
-              </div>
+            <div className=" flex justify-center   ">
+              <Link to={ user?.rol === 'ADMIN' ? '/admin/doctors' : user?.rol === 'DOCTOR' ? '/doctor/doctors' : user?.rol === 'PATIENT' ? '/patient/buy/doctor/' + idDoctor : "/login"} className='font-poppins text-lg text-white text-center  focus:bg-[#292F53] rounded bg-[#1479FF] w-40 h-10 m-3 mt-8 pt-1'> Reserva tu cita</Link>
+             {/* "/dummy/doctors/" + idDoctor + "/stripe" */}
+            </div>
             ):(
             <span></span>
             )}

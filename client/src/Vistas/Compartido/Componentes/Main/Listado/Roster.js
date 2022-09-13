@@ -26,6 +26,7 @@ export default function DoctorsRoster() {
     setError("No se encontraron resultados para su busqueda")
   }, []);
 
+  const rol = JSON.parse(sessionStorage.getItem('Rol'))
   
 
   return (
@@ -36,7 +37,7 @@ export default function DoctorsRoster() {
         {displayedBadges.length < 1 ? <p>{error}</p>  : displayedBadges.map((e) => {
 
           return (
-            <Link to={`/dummy/doctors/${e._id}`}>
+            <Link to={ rol === 'ADMIN' ?  `/admin/doctors/${e._id}` : rol === 'DOCTOR' ?  `/doctor/doctors/${e._id}` : rol === 'PATIENT' ?  `/patient/doctors/${e._id}` : `/doctors/${e._id}`  }>
               <DoctorBadge
                 key={e._id}
                 name={e.name}

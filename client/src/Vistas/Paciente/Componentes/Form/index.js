@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../../../Compartido/Componentes/Header/NavBar";
-import InputImage from "../../../Compartido/Componentes/Register/InputImage";
+import InputImage from "../../../Compartido/Componentes/InputImage/InputImage";
 
 export default function CreatePatient() {
   const navigate = useNavigate();

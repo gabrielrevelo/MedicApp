@@ -1,0 +1,100 @@
+
+.RightMenu, .InfoAdmin{
+  display: flex;
+  align-items: center;
+}
+
+.RightMenu{
+  justify-content: flex-end;
+  gap: 8px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(41, 47, 83, .2);
+}
+
+.InfoAdmin{
+  color: #292F53;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.InfoAdmin h3{
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.InfoAdmin span{
+  font-weight: 500;
+  font-size: .8rem;
+  opacity: .75;
+}
+
+.IconMenu{
+  width: 12px;
+}
+
+/* .Avatar{
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #1479FF;
+} */
+
+.Dropdown{
+  position: relative;
+}
+
+.Dropdown *{
+  box-sizing: border-box;
+}
+
+.IconMenu{
+  width: 24px;
+  cursor: pointer;
+  padding: 5px;
+  box-shadow: 2px 2px 10px 2px rgba(41,47,83,0.05);
+}
+
+.Menu{
+  list-style: none;
+  padding: 1rem 1.4rem 1rem 2rem;
+  background-color: #292F53;
+  border-radius: 10px;
+  color: #f9f9f9;
+  position: absolute;
+  top: 3rem;
+  left: 100%;
+  transform: translateX(-100%);
+  opacity: 0;
+  display: none;
+  transition: 3s ease-in-out;
+}
+
+.MenuOpen{
+  transition: 2s ease-in-out;
+  display: block;
+  opacity: 1;
+  z-index: 1;
+}
+
+.Menu li{
+  margin-bottom: 20px;
+  text-align: right;
+  cursor: pointer;
+  transition: .7s;
+}
+
+.Menu li:hover{
+  transform: scale(1.01);
+  transition: .3s;
+}
+
+.Menu li:last-child{
+  margin-bottom: 0;
+  margin-top: 20px;
+  color: #1479FF;
+  font-size: 1rem;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(20, 121, 255, .2);
+}

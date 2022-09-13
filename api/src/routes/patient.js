@@ -21,4 +21,7 @@ patientRouter.patch("/saveDoctor/:idPatient", paramIdPatientValidator, bodyPatie
 /* Delete Patient */
 patientRouter.delete("/:idPatient", paramIdPatientValidator, controllerPatients.deletePatient);
 
+/* Get Patients between Dates - queries for Admins */
+patientRouter.get("/data/queries/", controllerPatients.countPatientsBetweenDates);
+
 module.exports = patientRouter;

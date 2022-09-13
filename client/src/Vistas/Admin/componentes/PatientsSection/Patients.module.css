@@ -1,5 +1,23 @@
-.ContainerPatients{
+.MainContainer,
+.TitleContainer,
+.Title,
+.TopCardDashboard, 
+.Card,
+.TitleContainer button,
+.isToggle{
   display: flex;
+}
+
+.TitleContainer, 
+.Title,
+.TopCardDashboard,
+.TitleContainer button,
+.Card,
+.isToggle{
+  align-items: center;
+}
+
+.MainContainer{
   flex-direction: column;
   width: 100%;
   min-height: 50vh;
@@ -12,52 +30,26 @@
 }
 
 .TitleContainer{
-  display: flex;
   justify-content: space-between;
-  align-items: center;
   margin-bottom: 20px;
 }
 
-.ContainerPatientTitle{
+.TitleContainer .Title{
   font-size: 1.2rem;
   font-weight: 600;
   color: #292F53;
   letter-spacing: 0.02rem;
-  display: flex;
-  align-items: center;
   gap: 5px;
 }
 
-.ContainerPatientTitle b{
+.TitleContainer .Title b{
   font-size: 1.3rem;
   font-weight: 700;
   color: #1479FF;
 }
 
-.ContainerPatientTitle img{
+.TitleContainer .Title img{
   height:30px;
-}
-
-.TopCardDashboard{
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 10px;
-  opacity: .5;
-}
-
-.TopCardDashboard h6{
-  flex-basis: 0%;
-}
-
-.TopCardDashboard h5{
-  flex-basis: 30%;
-}
-
-.TopCardDashboard span{
-  flex-basis: 14%;
 }
 
 .TitleContainer button{
@@ -66,8 +58,6 @@
   border-radius: 5px;
   font-weight: 600;
   font-size: .9rem;
-  display: flex;
-  align-items: center;
   gap:10px;
   transition: .9s linear;
 }
@@ -86,45 +76,40 @@
   background-color: #1479FF;
 }
 
-.ContainerPatients article:nth-child(2){
+.MainContainer article:nth-child(2){
   background-color:transparent;
   padding: 5px 20px;
   opacity: .75;
   margin-bottom: 0px;
-  box-shadow: 2px 2px 10px 2px rgba(41,47,83,0.00);
+  box-shadow: none;
   text-transform: uppercase;
   font-weight: 500;
   font-size: .9rem
 }
-.ContainerPatients article:nth-child(2) .isActive{
-  color: #292F53;
-}
 
-.CardPatientDashboard{
+.Card{
   width: 100%;
   background-color: #f9f9f9;
   box-shadow: 2px 2px 10px 2px rgba(41,47,83,0.05);
   padding: 10px 20px;
-  display: flex;
-  align-items: center;
   justify-content: space-between;
   gap: 10px;
   border-radius: 10px;
   margin-bottom: 5px;
 }
 
-.CardPatientDashboard h5, .Email, .PhoneNumber {
+.Card h5, .Email, .PhoneNumber {
   color: #292F53;
   font-size: .75rem;
   font-weight: 600;
 }
 
-.CardPatientDashboard h5 {
+.Card h5 {
   flex-basis: 32%;
   border-right: 1px solid rgba(41, 47, 83,.2);
 }
 
-.CardPatientDashboard h5:hover {
+.Card h5:hover {
   cursor: pointer;
   transform: scale(1.01);
   transition: .3s;
@@ -158,8 +143,6 @@
 }
 
 .isToggle{
-  display: flex;
-  align-items: center;
   gap: 5px;
   flex-basis: 14%;
   font-size: .75rem;
@@ -186,4 +169,3 @@
   background-color: #292F53;
   transition: .7s linear;
 }
-

@@ -14,7 +14,6 @@ const CardResume = () => {
 
   return (
     <div className={styles.Container}>
-      {console.log(doctors)}
       <section className={styles.ContainerCard}>
         <div className={styles.CardText}>
           <h3>Pacientes Totales</h3>

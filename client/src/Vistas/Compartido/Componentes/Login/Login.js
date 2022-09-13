@@ -4,6 +4,7 @@ import imgLogin from '../../imagenes compartidas/login.jpeg'
 import NavBar from '../Header/NavBar';
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import { useAuthContext } from '../../../../context/authContext';
 
 
 
@@ -20,7 +21,10 @@ const Validate = (input) => {
 
 export default function Login() {
 
-    const navigate = useNavigate()
+    const {login} = useAuthContext();
+
+
+    // const navigate = useNavigate()
     const [input, setInput] = useState({
         email: '',
         password: ''
@@ -56,18 +60,21 @@ export default function Login() {
 
             localStorage.setItem('auth-token', JSON.stringify( response.data.token));
             localStorage.setItem('User', JSON.stringify( response.data.data));
+            window.sessionStorage.setItem('Rol', JSON.stringify(response.data.data.rol))
+            window.sessionStorage.setItem('isAuth', true)
 
             setInput({
                 email: '',
                 password: ''
             })
-            if (response.data.data.rol === 'ADMIN') {
-                navigate('/')
-            } else if (response.data.data.rol === 'DOCTOR') {
-                navigate('/')
-            } else if (response.data.data.rol === 'PATIENT') {
-                navigate('/')
-            }
+            login()
+            // if (response.data.data.rol === 'ADMIN') {
+            //     navigate('/')
+            // } else if (response.data.data.rol === 'DOCTOR') {
+            //     navigate('/doctor/dashboard')
+            // } else if (response.data.data.rol === 'PATIENT') {
+            //     navigate('/')
+            // }
         } catch (error) {
             Swal.fire(error.response.data.error)
             // console.log(error);

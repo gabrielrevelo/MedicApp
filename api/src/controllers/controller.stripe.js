@@ -12,10 +12,12 @@ const controllerUsers = {
 
     const { idDoctor, hour, date, paymentProcessed} = req.body;
     //console.log( idDoctor, 'doctor id')
+    console.log(req.body);
      const user_id = req.user_id
+     console.log(user_id);
     try {
         const payment = await stripe.paymentIntents.create({
-			currency: "USD",
+			currency: "ARS",
 			amount,
 			description: "Consulta",
 			payment_method: id,
@@ -29,7 +31,7 @@ const controllerUsers = {
 		res.json({ msg: "Successful payment" })
 
     } catch (error) {
-        res.json(  error)
+        res.json({msg:error})
     }
   },
 };

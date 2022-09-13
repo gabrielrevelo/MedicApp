@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import TopBar from "../TopBar/TopBar";
-import NavbarAdmin from "../NavbarAdmin/NavbarAdmin";
+import TopBar from "./TopBar/TopBar";
+import NavbarAdmin from "./NavbarAdmin/NavbarAdmin";
 import styles from "./Dashboard.module.css";
 import CardResume from "./CardResume/CardResume";
 import DataResume from "./DataResume/DataResume";

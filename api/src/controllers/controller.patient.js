@@ -110,6 +110,38 @@ const controllerPatients = {
       return res.status(error.code || 500).send({ errors: error.message });
     }
   },
+  countPatientsBetweenDates: async (req, res, next) => {
+    const { startDate, finishDate } = req.query;
+    try {
+      const countPatients = await Patient.aggregate([
+        {
+          $addFields: {
+            "tempDate": {
+              $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } ,
+            },
+          },
+        },
+        {
+          $match: {
+            "tempDate": {
+              $gte: startDate,
+              $lte: finishDate,
+            },
+          },
+        },
+        {
+          $group: {
+            _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
+            count: { $sum: 1 },
+          },
+        },
+        { $sort : { _id : 1 } }
+      ]);
+      return res.status(200).send(countPatients);
+    } catch (error) {
+      return res.status(error.code || 500).send({ errors: error.message });
+    }
+  },
 };
 
 const throwError = (errorType) => {

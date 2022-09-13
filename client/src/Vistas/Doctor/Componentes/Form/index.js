@@ -4,7 +4,7 @@ import { postDoctor } from "../../../../Redux/actions/doctorActions";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../../../Compartido/Componentes/Header/NavBar";
-import InputImage from "../../../Compartido/Componentes/Register/InputImage";
+import InputImage from "../../../Compartido/Componentes/InputImage/InputImage";
 
 export default function Registro() {
   const navigate = useNavigate();

@@ -3,6 +3,7 @@ import axios from "axios";
 import {
   getAllAppointments,
   getAppointmentById,
+  getAppointmentsByQuery
 } from "../Slicer/slicerGeneralAppointments";
 
 export const getAppointment = (idAppointment) => async (dispatch) => {
@@ -26,6 +27,12 @@ export const getAppointments = () => async (dispatch) => {
   }
 };
 
-
+export const getAppointmentsBySearch = (query) => async (dispatch) => {
+  try {
+    return dispatch(getAppointmentsByQuery(query));
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 

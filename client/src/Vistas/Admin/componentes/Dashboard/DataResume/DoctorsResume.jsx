@@ -18,7 +18,7 @@ const Doctors = ({ iconTitle, iconActive, iconInactive }) => {
       <div className={styles.TitleContainerAlternate}>
         <h4 className={styles.ContainerDoctorTitle}>
           <img src={iconTitle} alt="alt-img-title-icon" />
-          Nuevos Médicos en <b>MedicApp</b>
+          Nuevos Doctores en <b>MedicApp</b>
         </h4>
         <button onClick={()=>changeSection("Doctores")}>Ver Todos</button>
       </div>

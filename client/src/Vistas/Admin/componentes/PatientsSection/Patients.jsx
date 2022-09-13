@@ -6,11 +6,11 @@ import iconAdd from "../../assets/dashboard/add-icon.svg";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getPatients, changeStatusPatient, getPatient } from "../../../../Redux/actions/generalActionsPatients";
-import Modal from "../Modal/Modal";
+import Modal from "../Dashboard/Modal/Modal";
 import Toggle from "../Dashboard/Toggle/Toggle";
-import EditPatient from "./EditPatient/EditPatient";
-import CreatePatient from "./CreatePatient/CreatePatient";
-import DetailPatient from "./DetailPatient/DetailPatient";
+import EditPatient from "./EditPatient";
+import CreatePatient from "./CreatePatient";
+import DetailPatient from "./DetailPatient";
 
 const Patients = () => {
   const dispatch = useDispatch();
@@ -68,9 +68,9 @@ const Patients = () => {
 
   return (
     <>
-      <section className={styles.ContainerPatients}>
+      <section className={styles.MainContainer}>
         <div className={styles.TitleContainer}>
-          <h4 className={styles.ContainerPatientTitle}>
+          <h4 className={styles.Title}>
             <img src={iconTitle} alt="alt-img-title-icon" />
             Lista de Pacientes en <b>MedicApp</b>
           </h4>
@@ -80,7 +80,7 @@ const Patients = () => {
           </button>
         </div>
 
-        <article className={styles.CardPatientDashboard}>
+        <article className={styles.Card}>
           <div className={styles.Avatar}></div>
           <h5>Nombre Completo</h5>
           <span className={styles.Email}>Email</span>
@@ -117,7 +117,7 @@ const Patients = () => {
         {/** @return => mapea todos los pacientes en el state patients */}
         { patients && patients.map((patient) => {
           return (
-            <article className={styles.CardPatientDashboard} key={patient._id}>
+            <article className={styles.Card} key={patient._id}>
               <div className={styles.Avatar}>
                 <img src={patient.image || avatarDefault} alt="avatar-img" />
               </div>
