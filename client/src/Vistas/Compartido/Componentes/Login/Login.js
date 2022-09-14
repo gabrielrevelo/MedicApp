@@ -28,7 +28,7 @@ export default function Login(email, password) {
     password: "",
   });
   const [errors, setErrors] = useState({
-    email: "Email is required",
+    email: "Email requerido",
   });
 
   const handleChange = (e) => {
@@ -118,7 +118,7 @@ export default function Login(email, password) {
                     className="text-right text-slate-400 hover:underline hover:text-[#292F53]"
                     to="/"
                   >
-                    Forgot your password?
+                    Olvido su contraseña?
                   </Link>
                 </div>
               </div>
