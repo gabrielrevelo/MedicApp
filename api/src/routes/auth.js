@@ -5,6 +5,7 @@ const controllerAuth = require("../controllers/controller.auth");
 /* Auth */
 
 router.post('/signin' , controllerAuth.signIn )
+router.post("/google",  controllerAuth.google);
 // router.get("/", controllerAdmins.getAll);
 // router.post("/",  controllerAdmins.createAdmin);
 // router.get("/:id", controllerAdmins.getAdmin);

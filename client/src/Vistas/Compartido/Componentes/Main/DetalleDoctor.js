@@ -2,10 +2,10 @@ import {useParams} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState} from 'react';
 import { getDocbyId } from '../../../../Redux/actions/doctorActions';
-//import StarDetail from "./StarDetail";
+import StarDetail from "./StarDetail";
 import { HiLocationMarker } from "react-icons/hi";
 import { HiOutlinePhone } from "react-icons/hi";
-import Stripe from '../../../Paciente/StripeCheckOut'
+//import Stripe from '../../../Paciente/StripeCheckOut'
 import NavBar from '../Header/NavBar';
 import {Link} from 'react-router-dom'
 
@@ -28,6 +28,10 @@ function DetalleDoctor (){
 
   let separateHours1A = separateHours1?.replace(':00','')
   let separateHours2A = separateHours2?.replace(':00','')
+
+
+
+  let rating = doctor?.rating
 
   // console.log(separateHours1A, 'lo que me trae hours');
   // console.log(separateHours2A, 'lo que me trae hours2');
@@ -56,13 +60,15 @@ function DetalleDoctor (){
 
   useEffect(() => {
     dispatch(getDocbyId(idDoctor))
-  },[dispatch, idDoctor]);
+    console.log(rating, 'dispatch');
+
+  },[dispatch, doctor?.rating, idDoctor, rating]);
   
 
  localStorage.setItem('hour',selectedHour)
  localStorage.setItem('date',selectedDate)
-  console.log(selectedDate ,'selected date');
-  console.log(selectedHour, 'selectred hour');
+  // console.log(selectedDate ,'selected date');
+  // console.log(selectedHour, 'selectred hour');
 
   const user = JSON.parse(window.localStorage.getItem('User'))
 
@@ -89,19 +95,19 @@ function DetalleDoctor (){
 
             <span className='font-raleway w-fit text-[#1479FF] align-middle rounded flex flex-row '> <span className='mt-1'><HiOutlinePhone/></span>: <span className='text-[#1479FF] tracking-[.10em]'>{doctor?.phoneNumber}</span> </span>
 
-            {/* <div className='text-[#1479FF] mt-4 mb-2 '>
+            <div className='text-[#1479FF] mt-4 mb-2 '>
               {<StarDetail
-              stars={doctor && rating}/>}
+              stars={4}/>}
             </div>
-            */}
+           
             </div>
 
           </section>
-          {/* <section className='bg-white w-[550px] h-fit mt-10 rounded-t' >
+          <section className='bg-white w-[550px] h-fit mt-10 rounded-t' >
           <h1 className='bg-[#1479FF] font-poppins text-white h-10 align-middle	p-2 rounded-t' >Reseñas</h1>
-            <p className='font-raleway text-[#292f53b8] text-sm mt-4 mb-2 text-center' >{doctor?.name} Aun no tiene reseñas</p>
+            <p className='font-raleway text-[#030304b8] text-sm mt-4 mb-2 text-center' >{doctor?.name} Aun no tiene reseñas</p>
             <br></br>
-          </section> */}
+          </section>
         </div>
 
         <div>
@@ -113,7 +119,7 @@ function DetalleDoctor (){
 
           <p className='font-poppins tracking-wide mt-1 mb-2 ml-2'> Selecciona tu fecha:</p>
 
-          <input type="date" id="start" name="trip-start" min="2022-09-05" max="2022-09-09" className="font-raleway ml-2" onClick={e => handleClickDate(e)}/>
+          <input type="date" id="start" name="trip-start" min="2022-09-19" max="2022-09-23" className="font-raleway ml-2" onClick={e => handleClickDate(e)}/>
           <br></br>
 
 

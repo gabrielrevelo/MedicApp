@@ -1,5 +1,6 @@
 import React, { useEffect,useState } from "react";
 import styles from "./Doctores.module.css";
+import Swal from "sweetalert2";
 import iconTitle from "../../assets/ico-dark.png";
 import avatarDefault from "../../assets/dashboard/default-avatar.jpg";
 import iconAdd from "../../assets/dashboard/add-icon.svg";
@@ -16,6 +17,7 @@ import { changeStatusDoctor, getDoctor, getDoctors} from "../../../../Redux/acti
 const Doctores = () => {
   const dispatch = useDispatch();
   const { doctors, detailDoctor } = useSelector((state) => state.generalDoctors);
+  const [status, setStatus] = useState(false);
   const [form, setForm] = useState({
     edit: false,
     create: false,
@@ -27,8 +29,16 @@ const Doctores = () => {
    *  @return => no retorna nada
    * */ 
   const changeStatus = (idDoctor) => {
-    console.log(idDoctor);
     dispatch(changeStatusDoctor(idDoctor));
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      iconColor: '#1479FF',
+      title: 'Cambió el estado del admin',
+      showConfirmButton: false,
+      timer: 1300
+    });
+    setStatus(true);
   };
 
   /**
@@ -66,7 +76,10 @@ const Doctores = () => {
    * */ 
   useEffect(() => {
     dispatch(getDoctors());
-  }, [dispatch, form]);
+    return () => {
+      setStatus(false);
+    }
+  }, [dispatch, form, status]);
 
   return (
     <>

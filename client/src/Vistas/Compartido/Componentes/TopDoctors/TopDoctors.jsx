@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./TopDoctors.module.css";
 
 import iconAdress from "../../imagenes compartidas/icon-address.png";
@@ -6,6 +7,9 @@ import iconClock from "../../imagenes compartidas/icon-clock.png";
 import iconStar from "../../imagenes compartidas/icon-star.png";
 
 const TopDoctors = ({id, name, specialities, rating, schedule, address, image}) => {
+
+  const rol = JSON.parse(sessionStorage.getItem('Rol'));
+
   return (
     <>
       <section className={styles.Card}>
@@ -32,7 +36,9 @@ const TopDoctors = ({id, name, specialities, rating, schedule, address, image}) 
             </span>
             <span> <img src={iconAdress} alt="alt-icon-adress"/>{address}</span>
           </div>
-          <button>Ver Perfil</button>
+          <Link to={ rol === 'ADMIN' ?  `/admin/doctors/${id}` : rol === 'DOCTOR' ?  `/doctor/doctors/${id}` : rol === 'PATIENT' ?  `/patient/doctors/${id}` : `/doctors/${id}`  }>
+          Ver Perfil
+          </Link>
         </div>
       </section>
     </>

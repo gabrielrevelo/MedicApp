@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import Swal from "sweetalert2";
 import styles from "./SectionsPatients.module.css";
 import iconClose from "../../assets/dashboard/close-icon.svg";
 import iconInput from "../../assets/dashboard/input-icon.svg";
@@ -45,8 +46,21 @@ const EditPatient = ({ id, onClick, name, email, phoneNumber }) => {
       dispatch(editPatient(id, values));
       setInput(initialInputs);
       onClick();
+      Swal.fire({
+        title: 'Edicion Exitosa',
+        text: 'Se editó el paciente correctamente',
+        icon: 'success',
+        iconColor: '#1479FF',
+        confirmButtonColor: '#1479FF',
+      });
     } else {
-      console.log("error");
+      Swal.fire({
+        title: 'Error',
+        text: 'No se pudo editar el paciente.',
+        icon: 'error',
+        iconColor: '#E25241',
+        confirmButtonColor: '#E25241',
+      });
     }
   };
 

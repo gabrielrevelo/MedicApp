@@ -19,11 +19,9 @@ export default function PanelDoctor() {
   const citaTotal = doctor?.appointments.length;
   const valorCita = doctor?.doctor.checkUpPrice * citaTotal;
 
-  console.log(valorCita);
-
   useEffect(() => {
     dispatch(getProfileDoc());
-  }, [dispatch, section]);
+  }, [dispatch]);
 
   return (
     <>

@@ -1,4 +1,5 @@
 import React, { useEffect,useState } from "react";
+import Swal from "sweetalert2";
 import moment from "moment";
 import styles from "./Admins.module.css";
 import iconTitle from "../../assets/ico-dark.png";
@@ -15,6 +16,7 @@ import DetailAdmin from "./DetailAdmin";
 const Admins = () => {
   const dispatch = useDispatch();
   const { admins, detailAdmin } = useSelector((state) => state.generalAdmins);
+  const [status, setStatus] = useState(false);
   const [form, setForm] = useState({
     edit: false,
     create: false,
@@ -27,6 +29,15 @@ const Admins = () => {
    * */ 
   const changeStatus = (idAdmin, enable) => {
     dispatch(changeStatusAdmin(idAdmin, enable));
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      iconColor: '#1479FF',
+      title: 'Cambió el estado del admin',
+      showConfirmButton: false,
+      timer: 1300
+    });
+    setStatus(true);
   };
 
   /**
@@ -63,7 +74,10 @@ const Admins = () => {
    * */ 
   useEffect(() => {
     dispatch(getAdmins());
-  }, [dispatch, form]);
+    return () => {
+      setStatus(false);
+    }
+  }, [dispatch, form, status]);
 
   return (
     <>

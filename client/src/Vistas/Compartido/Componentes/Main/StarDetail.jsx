@@ -1,9 +1,10 @@
 
 const StarDetail = ({stars}) => {
-  console.log(stars, 'lo que llega por stars');
+  let starLength = Math.round(stars)
+  console.log(starLength,'recibido');
     return (
-      <div  >
-        {[...Array(stars)].map((_, index) => {
+      <div>
+        {[...Array(Math.round(starLength))].map((_, index) => {
           index += 1;
           return(<span key ={index}>&#9733;</span>)
         })}

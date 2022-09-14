@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import Swal from "sweetalert2";
 import styles from "./SectionsDoctors.module.css";
 import iconClose from "../../assets/dashboard/close-icon.svg";
 import iconInput from "../../assets/dashboard/input-icon.svg";
@@ -53,8 +54,21 @@ const EditDoctor = ({id, onClick, name, email, phoneNumber, license, address}) =
       dispatch(editDoctor(id,values));
       setInput(initialInputs);
       onClick();
+      Swal.fire({
+        title: 'Edicion Exitosa',
+        text: 'Se editó el doctor correctamente',
+        icon: 'success',
+        iconColor: '#1479FF',
+        confirmButtonColor: '#1479FF',
+      });
     } else {
-      console.log("error");
+      Swal.fire({
+        title: 'Error',
+        text: 'No se pudo editar el doctor.',
+        icon: 'error',
+        iconColor: '#E25241',
+        confirmButtonColor: '#E25241',
+      });
     }
   };
 

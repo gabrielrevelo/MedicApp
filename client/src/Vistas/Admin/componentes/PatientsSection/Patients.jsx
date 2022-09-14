@@ -1,4 +1,5 @@
 import React, { useEffect,useState } from "react";
+import Swal from "sweetalert2";
 import styles from "./Patients.module.css";
 import iconTitle from "../../assets/ico-dark.png";
 import avatarDefault from "../../assets/dashboard/default-avatar.jpg";
@@ -15,6 +16,7 @@ import DetailPatient from "./DetailPatient";
 const Patients = () => {
   const dispatch = useDispatch();
   const { patients, detailPatient } = useSelector((state) => state.generalPatients);
+  const [status, setStatus] = useState(false);
   const [form, setForm] = useState({
     edit: false,
     create: false,
@@ -26,8 +28,16 @@ const Patients = () => {
    *  @return => no retorna nada
    * */ 
   const changeStatus = (idPatient) => {
-    console.log(idPatient);
     dispatch(changeStatusPatient(idPatient));
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      iconColor: '#1479FF',
+      title: 'Cambió el estado del admin',
+      showConfirmButton: false,
+      timer: 1300
+    });
+    setStatus(true);
   };
 
   /**
@@ -64,7 +74,10 @@ const Patients = () => {
    * */ 
   useEffect(() => {
     dispatch(getPatients());
-  }, [dispatch, form]);
+    return () => {
+      setStatus(false);
+    }
+  }, [dispatch, form, status]);
 
   return (
     <>

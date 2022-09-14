@@ -1,14 +1,32 @@
-.MainContainer{
+.MainContainer,
+.ContainerCards,
+.Card,
+.TopCard,
+.Hours,
+.Rating,
+.ContainerHours,
+.BottomCard,
+.BottomAddress{
   display: flex;
+}
+
+.BottomAddress{
   flex-direction: column;
-  align-items: center;
+}
+
+.MainContainer,
+.Card{
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+
+.MainContainer{
   width: 100%;
   font-family: "Poppins", sans-serif;
 }
 
 .ContainerCards{
-  display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
@@ -29,11 +47,7 @@
 }
 
 .Card{
-  display: flex;
-  flex-direction: column;
   gap: 10px;
-  align-items: center;
-  justify-content: center;
   background-color: #F1F2F6;
   padding: 15px;
   min-width: 360px;
@@ -42,7 +56,6 @@
 }
 
 .TopCard{
-  display: flex;
   justify-content:space-evenly;
   align-items: center;
   gap: 10px;
@@ -65,71 +78,63 @@
   color: #292F53;
 }
 
-.TopCard .Speciality{
+.Speciality{
   font-size: .75rem;
   opacity: .7;
 }
 
-.TopCard .Hours{
+.Hours{
   background: #1479FF;
   padding: 5px 15px;
   color: #f9f9f9;
   font-size: .7rem;
   font-weight: 500;
   border-radius: 6px;
-  display: flex;
   align-items: center;
   gap: 5px;
   line-height: 18px;
 }
 
-.TopCard .Hours img{
+.Hours img{
   width: 18px;
   height: 18px;
   object-fit: cover;
 }
 
-.TopCard .Rating{
-  display: flex;
+.Rating{
   align-items: center;
   gap: 2px;
   line-height: 18px;
 }
 
-.TopCard .Rating img{
+.Rating img{
   width: 18px;
   height: 18px;
   object-fit: cover;
   margin-top: -2.5px;
 }
 
-.TopCard .ContainerHours{
+.ContainerHours{
   margin-top: 10px;
-  display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 30px;
 }
 
 .BottomCard{
-  display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
 }
 
-.BottomCard .BottomAddress{
-  display: flex;
-  flex-direction: column;
-}
-
-.BottomCard .BottomAddress span:first-child{
+.BottomAddress span:first-child{
   color: #1479FF;
   font-size: .75rem;
   font-weight: 700;
   margin-bottom: 5px;
 }
 
-.BottomCard .BottomAddress span:last-child{
+.BottomAddress span:last-child{
   font-size: .8rem;
   font-weight: 500;
   display: flex;
@@ -139,21 +144,20 @@
   line-height: 20px;
 }
 
-.BottomCard .BottomAddress span:last-child img{
+.BottomAddress span:last-child img{
   width: 20px;
 }
 
-.BottomCard button{
+.BottomCard a{
   background: #00C6C2;
-  padding: 5px 15px;
+  padding: 8px 15px;
   color: #f9f9f9;
   border-radius: 5px;
   font-size: .9rem;
-  outline: none;
   transition: .9s ease-in-out;
 }
 
-.BottomCard button:hover{
+.BottomCard a:hover{
   background: #292F53;
   cursor: pointer;
   transition: .5s ease-in-out;
