@@ -44,7 +44,7 @@ export const getDocsFiltered = (type) => (dispatch) => {
 export const getProfileDoc = () => async (dispatch) => {
   const token2 = window.localStorage.getItem('auth-token')
   try {
-    const {data} = await axios.get('http://localhost:3004/profile/doctor', {
+    const data = await axios.get('http://localhost:3004/profile/doctor', {
       //headers: { Authorization: `Bearer ${token}`}
       headers: { Authorization: `Bearer ${JSON.parse(token2)}`}
     });

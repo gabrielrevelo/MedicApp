@@ -1,25 +1,33 @@
 import React from 'react'
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getPatientToken } from '../../../Redux/actions/generalActionsPatients';
 import NavBar from '../../Compartido/Componentes/Header/NavBar'
 
 export default function Paciente() {
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getPatientToken())
+    }, [])
 
-  const detailPatient = JSON.parse(localStorage.getItem('User'))
-
-  console.log(detailPatient.name);
-
-  return (
-    // <div>
-    //     <h1>PANEL DEL PACIENTE</h1>
-    // </div>
-    <div>
-
-    <NavBar />
-    
-    <div className="flex  justify-center text-center my-20 h-auto bg-slate-300">
+    const detailPatient = JSON.parse(localStorage.getItem('User'))
 
 
-            {(detailPatient ) ? <div  className="container flex flex-col items-center w-full h-screen " >
-                {/* <div className="container flex flex-col items-center w-full h-screen"> */}
+    console.log(detailPatient.name);
+
+    return (
+        // <div>
+        //     <h1>PANEL DEL PACIENTE</h1>
+        // </div>
+        <div>
+
+            <NavBar />
+
+            <div className="flex  justify-center text-center my-20 h-auto bg-slate-300">
+
+
+                {(detailPatient) ? <div className="container flex flex-col items-center w-full h-screen " >
+                    {/* <div className="container flex flex-col items-center w-full h-screen"> */}
                     <div className="flex flex-row items-center justify-center w-full h-full ">
                         <div className="relative flex flex-row bg-gray-50 shadow-2xl rounded-lg w-4/5 p-10">
                             {/* <Link to='/artists' className="absolute flex items-center w-10 h-10 right-4 top-4 justify-center">
@@ -43,8 +51,8 @@ export default function Paciente() {
                                 </div> */}
                                 <div className="mb-5 flex flex-row items-center justify-between">
                                     {/* <div> */}
-                                        {/* <p className="text-xl font-extrabold">Nacionalidad</p> */}
-                                        {/* <p className="text-base font-light">{detailUser.city} - {detailUser.country}</p> */}
+                                    {/* <p className="text-xl font-extrabold">Nacionalidad</p> */}
+                                    {/* <p className="text-base font-light">{detailUser.city} - {detailUser.country}</p> */}
                                     {/* </div> */}
                                     {/* <div>
                                         <button className="flex flex-row items-center justify-center px-5 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg border border-blue-700 active:scale-95 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 disabled:cursor-not-allowed transition-colors duration-200">Me interesa <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -55,12 +63,12 @@ export default function Paciente() {
                             </div>
                         </div>
                     </div>
-                {/* </div> */}
-                {/* <div className=' top-10 w-auto  ' >
+                    {/* </div> */}
+                    {/* <div className=' top-10 w-auto  ' >
                 <EventsArtist events= {detailUser.shows} />
                 </div> */}
-            </div> : ''}
+                </div> : ''}
+            </div>
         </div>
-        </div>
-  )
+    )
 }

@@ -36,6 +36,10 @@ const appointmentSchema = new Schema({
     type: Schema.Types.ObjectId,
     required: true,
   },
+  commentPatient:{
+    type: [String],
+    required: false,
+  },
 },{
   timestamps: true,
   versionKey: false

@@ -12,6 +12,10 @@ patientRouter.get("/", controllerPatients.getAll);
 patientRouter.post("/", bodyPatientValidatorPOST , controllerPatients.createPatient);
 /* Get Patient by Id */
 patientRouter.get("/:idPatient", paramIdPatientValidator, controllerPatients.getPatient);
+
+/* Get Patient by Token */
+patientRouter.get("/patient/profile", [ValidateToken.Patient], controllerPatients.getPatientToken);
+
 /* Update Patient by Id */
 patientRouter.patch("/:idPatient", paramIdPatientValidator, bodyPatientValidatorPATCH, controllerPatients.updatePatient);
 /* Change Status(Active) Patient*/

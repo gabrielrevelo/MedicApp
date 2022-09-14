@@ -1,4 +1,5 @@
 const Doctor = require("../models/Doctor");
+const Appointment = require("../models/Appointment");
 const mailer = require("../config/sendMails/mailer");
 const bcrypt = require('bcryptjs');
 
@@ -50,10 +51,11 @@ const controllerDoctors = {
     const { idDoctor } = req.params;
     try {
       const doctorById = await Doctor.findById(idDoctor);
+      const appoinment = await Appointment.find({doctor:idDoctor});
       if (!doctorById) {
         throwError(1202);
       }
-      return res.status(200).send({ data: doctorById });
+      return res.status(200).send({ data: doctorById, reviews: appoinment });
     } catch (error) {
       if (error.kind === "ObjectId") {
         return res.status(403).send({ errors: "Formato de ID incorrecto" });

@@ -13,7 +13,23 @@ export const getPatient = (idPatient) => async (dispatch) => {
       return dispatch(getPatientById({}));
     }
     const patientById = await axios.get(`/patients/${idPatient}`);
+    console.log(patientById.data);
     return dispatch(getPatientById(patientById.data.data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getPatientToken = () => async (dispatch) => {
+  try {
+    // if(!idPatient){
+    //   return dispatch(getPatientById({}));
+    // }
+    const patientById = await axios('/patients/patient/profile',{
+      headers: { Authorization : `Bearer ${JSON.parse(window.localStorage.getItem('auth-token'))}`}
+    });
+    console.log(patientById.data);
+    // return dispatch(getPatientById(patientById.data.data));
   } catch (error) {
     console.log(error);
   }
@@ -27,6 +43,7 @@ export const getPatients = () => async (dispatch) => {
     console.log(error);
   }
 };
+
 
 export const getPatientsBetweenDates = (startDate, finishDate) => async (dispatch) => {
   try {
