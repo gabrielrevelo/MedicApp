@@ -46,29 +46,28 @@ export const doctoresSlice = createSlice({
     },
    
     getDoctorsFiltered: (state, action) => {
-      const specialities = action.payload.specialities;
-      const cities = action.payload.cities;
-      if (action.payload.cities) {
+      const {speciality, city} = action.payload;
+      if(!city && !speciality){
+        state.newFilter = state.doctores.data;
+      }
+      if (city && speciality) {
+        const filteredDoctors = state.doctores.data
+              .filter((doctor) => doctor.city.includes(city))
+              .filter((doctor) => doctor.specialities.includes(speciality));
+        state.newFilter = filteredDoctors;
+      }
+      if (city && !speciality) {
+        const filterDoctorByCities = state.doctores.data.filter((doctor) => doctor.city.includes(city));
+        state.newFilter = filterDoctorByCities;
+      }
+      if (!city && speciality) {
+        const filterDoctorBySpeciality = state.doctores.data.filter((doctor) => doctor.specialities.includes(speciality));
+        state.newFilter = filterDoctorBySpeciality;
+      }
+    /*   if (action.payload.city && action.payload.speciality) {
         const filteredStates = state.doctores;
         const newFilter3 = filteredStates.data.filter((d) => {
-          if (d.city.includes(cities)) {
-            return d;
-          }
-        });
-        state.newFilter = newFilter3;
-      }
-      if (action.payload.specialities) {
-        const newFilter4 = state.doctores.data.filter((t) => {
-          if (t.specialities.includes(specialities)) {
-            return t;
-          }
-        });
-        state.newFilter = newFilter4;
-      }
-      if (action.payload.cities && action.payload.specialities) {
-        const filteredStates = state.doctores;
-        const newFilter3 = filteredStates.data.filter((d) => {
-          if (d.city.includes(cities)) {
+          if (d.city.includes(city)) {
             return d;
           }
         });
@@ -76,17 +75,53 @@ export const doctoresSlice = createSlice({
       
         const newFilter4 = newFilter3
           ? newFilter3.filter((t) => {
-              if (t.specialities.includes(specialities)) {
+              if (t.specialities.includes(speciality)) {
                 return t;
               }
             })
           : state.doctores.data.filter((t) => {
-              if (t.specialities.includes(specialities)) {
+              if (t.specialities.includes(speciality)) {
                 return t;
               }
             });
         state.newFilter = newFilter4;
-      }
+      } */
+    },
+
+    DoctorsByRating: (state, action) => {
+      
+      const doctors = state.newFilter;
+
+      const byRating = doctors.sort((a, b) => {
+        if(action.payload === "highest"){
+          if (b.rating < a.rating) return -1;
+          if (a.rating < b.rating) return 1;
+          return 0;
+        }
+        else{
+          if (a.rating < b.rating) return -1;
+          if (b.rating < a.rating) return 1;
+          return 0;
+        }
+      });
+      state.newFilter = byRating;
+    },
+    DoctorsByPrice: (state, action) => {
+      const doctors = state.newFilter;
+
+      const byPrice = doctors.sort((a, b) => {
+        if(action.payload === "highest"){
+          if (b.checkUpPrice < a.checkUpPrice) return -1;
+          if (a.checkUpPrice < b.checkUpPrice) return 1;
+          return 0;
+        }
+        else{
+          if (a.checkUpPrice < b.checkUpPrice) return -1;
+          if (b.checkUpPrice < a.checkUpPrice) return 1;
+          return 0;
+        }
+      });
+      state.newFilter = byPrice;
     },
   },
 });
@@ -97,7 +132,9 @@ export const {
   getDoctorsBySpecialities,
   getDoctorsByCities,
   getDoctorsFiltered,
-  getProfileDoctor
+  getProfileDoctor,
+  DoctorsByRating,
+  DoctorsByPrice
 } = doctoresSlice.actions;
 
 export default doctoresSlice.reducer;

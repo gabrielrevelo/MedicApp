@@ -7,6 +7,8 @@ import {
   getDoctorsByCities,
   getDoctorsFiltered,
   getProfileDoctor,
+  DoctorsByRating,
+  DoctorsByPrice
 } from "../Slicer/slicer";
 
 export const getDocbyId = (id) => (dispatch) => {
@@ -54,6 +56,19 @@ export const getProfileDoc = () => async (dispatch) => {
     console.log(error)
   }
 };
+
+export const sortDocsByRating = (type) => (dispatch) => {
+  try {
+    dispatch(DoctorsByRating(type));
+  } catch (e) {}
+};
+
+export const sortDocsByPrice = (type) => (dispatch) => {
+  try {
+    dispatch(DoctorsByPrice(type));
+  } catch (e) {}
+};
+
 
 
 

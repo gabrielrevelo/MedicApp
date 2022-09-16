@@ -31,7 +31,7 @@
 /* Media queries for small-size devices (Mobile) */
 @media screen and (max-device-width: 600px) {
   .ModalContainer{
-    height: 100%;
+    width: 85%;
   }
 }
 

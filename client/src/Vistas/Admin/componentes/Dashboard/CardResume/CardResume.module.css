@@ -48,3 +48,11 @@
   font-size: 1.8rem;
   font-weight: 700;
 }
+
+
+@media screen and (max-device-width: 600px) {
+  .Container{
+    flex-wrap: wrap;
+  }
+
+}

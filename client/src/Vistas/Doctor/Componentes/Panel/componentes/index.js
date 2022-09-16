@@ -21,7 +21,7 @@ export default function PanelDoctor() {
 
   useEffect(() => {
     dispatch(getProfileDoc());
-  }, [dispatch]);
+  }, [dispatch, section]);
 
   return (
     <>

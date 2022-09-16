@@ -113,6 +113,19 @@ const controllerAppointments = {
       return res.status(error.code || 500).send({ errors: error.message });
     }
   },
+  addReview: async (req, res, next) => {
+  // console.log(req.params.id);
+    try {
+      const appointmentR = await Appointment.updateOne({
+      _id: req.params.id}, 
+      {$set: {score:req.body.score, comment: req.body.comment}
+    })
+    res.status(200).send({ data: appointmentR });
+  } catch (error) {
+    return res.status(error.code || 500).send({ errors: error.message });
+  }
+},
+
   deleteAppointment: async (req, res, next) => {
     const { idAppointment } = req.params;
     try {

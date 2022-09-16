@@ -6,7 +6,8 @@
 .Rating,
 .ContainerHours,
 .BottomCard,
-.BottomAddress{
+.BottomAddress,
+.PriceContainer{
   display: flex;
 }
 
@@ -31,7 +32,7 @@
   flex-wrap: wrap;
   gap: 20px;
   margin: 20px 0 40px 0;
-  max-width: 1500px;
+  max-width: 1300px;
 }
 
 .TitleCards{
@@ -51,8 +52,15 @@
   background-color: #F1F2F6;
   padding: 15px;
   min-width: 360px;
-  border-radius: 20px;
   box-shadow: 2px 2px 10px 2px rgba(41,47,83,0.05);
+}
+
+.Card{
+  border-radius: 20px;
+}
+
+.CardDetails{
+  border-radius: 20px 20px 0 0;
 }
 
 .TopCard{
@@ -161,4 +169,147 @@
   background: #292F53;
   cursor: pointer;
   transition: .5s ease-in-out;
+}
+
+.PriceContainer{
+  width: 100%;
+  background-color: rgba(41, 47, 83, .1);
+  border-radius: 10px;
+  margin-top: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.PriceContainer h4{
+  font-size: .9rem;
+  font-weight: 500;
+  padding: 8px;
+  color: #292F53;
+}
+
+.PriceContainer h4 b{
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1479FF;
+}
+
+
+/*Filter*/
+
+.FilterContainer{
+  width: 100%;
+  max-width: 1300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid rgba(41, 47, 83, .1);
+}
+
+.CountSearch{
+  margin-top: 20px;
+  font-size: .9rem;
+  opacity: .7;
+}
+
+.ContainerFilters{
+  width: 100%;
+  background-color: #F1F2F6;
+  border-radius: 20px;
+  height: 120px;
+}
+
+.MoreFiltersText{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  gap: 5px;
+  transition: .5s;
+  color: #292F53;
+  font-size: .75rem;
+}
+
+.MoreFiltersText:hover{
+  cursor: pointer;
+  transition: .3s;
+  text-decoration: underline;
+}
+
+
+.MoreFiltersText img{
+  width: 18px;
+}
+
+.NotFound{
+  opacity: .5;
+}
+
+
+
+
+
+
+
+
+
+
+.SelectContainer{
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+  width: 80%;
+}
+
+.Select {
+  /* Reset */
+  appearance: none;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  /* Personalize */
+  width: 100%;
+  height: 2.3rem;
+  padding: 0 4rem 0 1.8rem;
+
+
+    background: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg)
+    no-repeat right 0.6rem center / 1rem,
+  linear-gradient(to left,  rgba(20,121,255,1) 2.3rem, rgba(249, 249, 249, 1) 2.3rem);
+  color: rgb(41, 47, 83);
+  border-radius: 7px;
+  box-shadow: 0 0 10px 0 rgba(41, 47, 83, 0.1);
+  cursor: pointer;
+  /* <option> colors */
+  font-size: .8rem;
+  /* Remove focus outline */
+}
+
+.Select option{
+  font-family: "Poppins", sans-serif;
+  color: inherit;
+  background-color: #f9f9f9;
+}
+
+.Select:focus{
+  outline: none;
+  background-color: #f9f9f9;
+}
+.Select::-ms-expand{
+  display: none;
+}
+
+
+@media screen and (min-device-width: 1024px) {
+  .SelectContainer{
+    width: 60%;
+  }
+  .Select{
+    width: 30%;
+  }
 }

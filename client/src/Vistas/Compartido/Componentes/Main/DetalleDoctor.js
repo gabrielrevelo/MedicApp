@@ -60,7 +60,7 @@ function DetalleDoctor (){
 
   useEffect(() => {
     dispatch(getDocbyId(idDoctor))
-    console.log(rating, 'dispatch');
+    /* console.log(rating, 'dispatch'); */
 
   },[dispatch, doctor?.rating, idDoctor, rating]);
   
@@ -95,9 +95,10 @@ function DetalleDoctor (){
 
             <span className='font-raleway w-fit text-[#1479FF] align-middle rounded flex flex-row '> <span className='mt-1'><HiOutlinePhone/></span>: <span className='text-[#1479FF] tracking-[.10em]'>{doctor?.phoneNumber}</span> </span>
 
-            <div className='text-[#1479FF] mt-4 mb-2 '>
-              {<StarDetail
-              stars={4}/>}
+            <div className='text-[#1479FF] mt-2 mb-2 '>
+                &#9733; <span className="font-raleway text-[#292f53b8]">{doctor?.rating}</span>
+              {/* {<StarDetail
+              stars={4}/>} */}
             </div>
            
             </div>
@@ -119,7 +120,7 @@ function DetalleDoctor (){
 
           <p className='font-poppins tracking-wide mt-1 mb-2 ml-2'> Selecciona tu fecha:</p>
 
-          <input type="date" id="start" name="trip-start" min="2022-09-19" max="2022-09-23" className="font-raleway ml-2" onClick={e => handleClickDate(e)}/>
+          <input type="date" id="start" name="trip-start" min="2022-09-09" max="2022-09-23" className="font-raleway ml-2" onClick={e => handleClickDate(e)}/>
           <br></br>
 
 

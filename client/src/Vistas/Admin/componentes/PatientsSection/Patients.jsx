@@ -85,7 +85,7 @@ const Patients = () => {
         <div className={styles.TitleContainer}>
           <h4 className={styles.Title}>
             <img src={iconTitle} alt="alt-img-title-icon" />
-            Lista de Pacientes en <b>MedicApp</b>
+            Lista de Pacientes en <b> MedicApp</b>
           </h4>
           <button onClick={()=>setForm({edit:false, create:true})}>
             <img src={iconAdd} alt="Icon add" />

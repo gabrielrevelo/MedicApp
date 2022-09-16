@@ -160,3 +160,32 @@
   opacity: .85;
 }
 
+/* Media queries for small-size devices (Mobile) */
+@media screen and (max-device-width: 600px) {
+  .Card{
+    flex-direction: column;
+  }
+  .TitleContainer{
+    flex-direction: column;
+    gap: 10px;
+  }
+  .TitleContainer .Title{
+    font-size: 1rem;
+  }
+  .TitleContainer .Title img{
+    display: none;
+  }
+  .MainContainer article:nth-child(2){
+    display: none;
+  }
+
+  .Card h5, .Email, .PhoneNumber{
+    border: none;
+  }
+
+  .Avatar{
+    width: 40px;
+    height: 80px;
+    flex-basis: 80px;
+  }
+}

@@ -4,7 +4,8 @@ import {
   getAllPatients,
   getPatientById,
   changeStatus,
-  getPatientsByDates
+  getPatientsByDates,
+  getPatientProfile
 } from "../Slicer/slicerGeneralPatients";
 
 export const getPatient = (idPatient) => async (dispatch) => {
@@ -65,3 +66,15 @@ export const postPatient = (data) => async (dispatch) => {
   }
 };
 
+
+export const getPatientToken = () => async (dispatch) => {
+  try {
+    const patientById = await axios('http://localhost:3004/patients/profile',{
+      headers: { Authorization : `Bearer ${JSON.parse(window.localStorage.getItem('auth-token'))}`}
+    });
+    console.log(patientById.data);
+    return dispatch(getPatientProfile(patientById.data));
+  } catch (error) {
+    console.log(error);
+  }
+};

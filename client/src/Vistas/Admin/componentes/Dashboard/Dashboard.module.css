@@ -21,3 +21,12 @@
   gap: 20px;
 }
 
+@media screen and (max-device-width: 600px) {
+  .MenuContainer{
+    display: none;
+  }
+  .ContentContainer{
+    width: 100%;
+    padding: 20px;
+  }
+}

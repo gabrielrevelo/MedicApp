@@ -5,7 +5,8 @@ export const generalPatientsSlice = createSlice({
   initialState: {
     patients: [],
     detailPatient: {},
-    querySearch:[]
+    querySearch:[],
+    profile:{}
   },
   reducers: {
     getAllPatients: (state, action) => {
@@ -18,6 +19,10 @@ export const generalPatientsSlice = createSlice({
 
     getPatientsByDates: (state, action) => {
       state.querySearch = action.payload;
+    },
+
+    getPatientProfile: (state, action) => {
+      state.profile = action.payload;
     },
 
     changeStatus: (state) => {
@@ -40,7 +45,8 @@ export const {
   changeStatus,
   editPatient,
   postPatient,
-  getPatientsByDates
+  getPatientsByDates,
+  getPatientProfile
 } = generalPatientsSlice.actions;
 
 export default generalPatientsSlice.reducer;

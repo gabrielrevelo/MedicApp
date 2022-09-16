@@ -1,4 +1,5 @@
 const Patient = require("../models/Patient");
+const Appointment = require("../models/Appointment");
 const mailer = require("../config/sendMails/mailer");
 const bcrypt = require('bcryptjs');
 
@@ -34,6 +35,22 @@ const controllerPatients = {
         throwError(1302);
       }
       return res.status(200).send({ data: patientById });
+    } catch (error) {
+      if (error.kind === "ObjectId") {
+        return res.status(403).send({ errors: "Formato de ID incorrecto" });
+      }
+      return res.status(error.code || 500).send({ errors: error.message });
+    }
+  },
+  getPatientToken: async (req, res, next) => {
+    console.log(req.user_id);
+    try {
+      const patientById = await Patient.findById(req.user_id);
+      const appointment = await Appointment.find({patient:req.user_id});
+      if (!patientById) {
+        throwError(1302);
+      }
+      return res.status(200).send({ data: patientById, appointment: appointment });
     } catch (error) {
       if (error.kind === "ObjectId") {
         return res.status(403).send({ errors: "Formato de ID incorrecto" });

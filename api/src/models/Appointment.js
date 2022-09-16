@@ -21,10 +21,11 @@ const appointmentSchema = new Schema({
   },
   score:{
     type: Number,
+    default:0
   },
   comment:{
     type: String,
-    required: false,
+    default: '',
   },
   patient:{
     ref: "Patient",

@@ -6,14 +6,14 @@ import iconAdress from "../../imagenes compartidas/icon-address.png";
 import iconClock from "../../imagenes compartidas/icon-clock.png";
 import iconStar from "../../imagenes compartidas/icon-star.png";
 
-const TopDoctors = ({id, name, specialities, rating, schedule, address, image}) => {
+const TopDoctors = ({id, name, specialities, rating, schedule, address, image, price,  details}) => {
 
   const rol = JSON.parse(sessionStorage.getItem('Rol'));
 
   return (
     <>
-      <section className={styles.Card}>
-        <div className={styles.TopCard}>
+      <section className={styles.Card}>       
+      <div className={styles.TopCard}>
           <img
             src={image || "https://i.blogs.es/01a6e2/the-good-doctor/1366_2000.jpeg" }
             alt="img-doctor"
@@ -40,7 +40,14 @@ const TopDoctors = ({id, name, specialities, rating, schedule, address, image}) 
           Ver Perfil
           </Link>
         </div>
+        {
+        details === "Full" && 
+        <section className={styles.PriceContainer}>
+          <h4>Costo de consulta:  <b>${price}</b></h4>
+        </section>
+        }
       </section>
+      
     </>
   );
 };

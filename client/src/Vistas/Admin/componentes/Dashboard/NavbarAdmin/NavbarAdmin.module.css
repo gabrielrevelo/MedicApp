@@ -68,3 +68,11 @@
   font-size: .8rem;
   justify-self: flex-end;
 }
+
+
+
+@media screen and (max-device-width: 600px) {
+  .ContainerDataGraphics{
+    flex-direction: column;
+  }
+}

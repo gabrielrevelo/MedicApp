@@ -25,6 +25,7 @@ export default function NavBar({ setSection }) {
             onClick={() => setSection("reseñas")}>
             Reseñas
           </button>
+
         </div>
       </div>
     </>

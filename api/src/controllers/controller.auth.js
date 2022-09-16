@@ -8,7 +8,8 @@ const { OAuth2Client } = require("google-auth-library");
 const controllerAuth = {
   
   google: async (req, res,next) => {
-    const { google } = req.body;
+    const { google, rol } = req.body;
+    console.log(rol);
     const authClient = new OAuth2Client(
       "31532081050-nrgri514im6srt8c3e4thvg2dg6ionem.apps.googleusercontent.com"
     );
@@ -23,7 +24,7 @@ const controllerAuth = {
       })
       .then(async (response) => {
      
-        //   console.log(response)
+          console.log(response)
         const { email} = response.payload;
 
         const patient = await Patient.findOne({ email: email });
@@ -32,6 +33,22 @@ const controllerAuth = {
         console.log(patient,"paciente")
 
         try{
+          // if(!patient && rol === 'PATIENT'){
+          //   const newPatient = await Patient.create({
+          //     email: response.email,
+          //     name: response.name,
+          //     image: response.picture,
+          //     password:'',
+          //     phoneNumber: 44444,
+          //   }) 
+          //   res.status(200).json({data:newPatient})
+
+          // }
+          // if(!doctor){
+          //   const newPatient = await Patient.create({
+
+          //   })
+          // }
         if (patient) {
           const tokenPatient = Jwt.sign(
             { user_id: patient.id },
@@ -75,6 +92,68 @@ const controllerAuth = {
             next(error);
         }
       });
+  },
+  logGoogle: async (req, res, next) => {
+    try {
+      const { google, rol } = req.body;
+      const token = new OAuth2Client(
+        "31532081050-nrgri514im6srt8c3e4thvg2dg6ionem.apps.googleusercontent.com"
+        );
+        // console.log("googlepas")
+        // console.log(google)
+        // console.log(rol, 'rol');
+    // console.log(authClient, 'cliente')
+
+      // res.status(200).json({data: token})
+
+    const user = await token.verifyIdToken({
+        idToken: google,
+        audience:
+          "31532081050-nrgri514im6srt8c3e4thvg2dg6ionem.apps.googleusercontent.com",
+      })
+      // console.log(user, 'user');
+      // console.log(user.payload.email, 'user');
+      const patient = await Patient.findOne({ email: user.payload.email });
+      
+      if(!patient && rol === 'PATIENT'){
+        const newPatient = await Patient.create({
+              email: user.payload.email,
+              name: user.payload.name,
+              image: user.payload.picture,
+              password:'nuevo',
+              phoneNumber: 44444,
+            })
+            const tokenPatient = Jwt.sign({ user_id: newPatient.id }, "pacientetoken"); // process.env.TOKEN_SECRET_ADMIN )
+            const data = {
+              name: newPatient.name,
+              email: newPatient.email,
+              image: newPatient.image,
+              rol: "PATIENT",
+            };
+            return res.status(200).json({ data: data, token: tokenPatient });
+      }
+      if (patient) {
+          const tokenPatient = Jwt.sign(
+            { user_id: patient.id },
+            "pacientetoken"
+          ); // process.env.TOKEN_SECRET_ADMIN )
+          const data = {
+            name: patient.name,
+            email: patient.email,
+            image: patient.image,
+            rol: "PATIENT",
+          };
+          return res.status(200).json({ data: data, token: tokenPatient });
+        }
+
+
+
+      // const doctor = await Doctor.findOne({ email: payload.email });
+
+      console.log(user ,'user');
+    } catch (error) {
+       next(error)
+    }
   },
 
   

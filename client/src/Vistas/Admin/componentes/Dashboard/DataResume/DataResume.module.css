@@ -80,12 +80,12 @@
 .CardPatientDashboard h5, .CardDoctorDashboard h5{
   flex-basis: 32%;
   border-right: 1px solid rgba(41, 47, 83,.2);
+  display: none;
 }
 
 .Email{
   opacity: .85;
   flex-basis: 35%;
-  border-right: 1px solid rgba(41, 47, 83,.2);
 }
 
 .Avatar{
@@ -120,3 +120,53 @@
   width: 20px;
 }
 
+@media screen and (max-device-width: 600px) {
+  .ContainerDataGraphics{
+    flex-direction: column;
+  }
+
+  .ContainerData{
+    flex-direction: column;
+  }
+
+  .TitleContainer button{
+    display: none;
+  }
+
+  .ContainerPatients{
+    width: 100%;
+    padding: 10px 20px;
+  }
+
+  .ContainerPatients h4 img{
+    display: none;
+  }
+
+  .isActive, .isInactive{
+    display: none;
+  }
+
+  .CardDoctorDashboard h5{
+    display: none;
+  }
+
+  .Email{
+    font-size: .6rem;
+  }
+
+  .ContainerDoctors{
+    padding: 10px 20px;
+  }
+
+  .ContainerDoctors button{
+    display: none;
+  }
+
+  .ContainerDoctors h4 img{
+    display: none;
+  }
+
+  .Email{
+    border: none;
+  }
+}

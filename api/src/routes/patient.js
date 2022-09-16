@@ -8,8 +8,13 @@ const { paramIdPatientValidator, bodyPatientValidatorPOST, bodyPatientValidatorP
 /* Get All Patients  */ 
 // UNA RUTA SOLO PACIENTES:  patientRouter.get("/",[ValidateToken.Patient], controllerPatients.getAll);
 patientRouter.get("/", controllerPatients.getAll);
+
+/* Get Patient by Token */
+patientRouter.get("/profile", [ValidateToken.Patient], controllerPatients.getPatientToken);
+
 /* Post Patient */
 patientRouter.post("/", bodyPatientValidatorPOST , controllerPatients.createPatient);
+
 /* Get Patient by Id */
 patientRouter.get("/:idPatient", paramIdPatientValidator, controllerPatients.getPatient);
 /* Update Patient by Id */

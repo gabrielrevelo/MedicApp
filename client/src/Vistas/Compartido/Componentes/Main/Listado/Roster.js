@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
+import styles from "../../TopDoctors/TopDoctors.module.css";
+import NotFound from "../../../imagenes compartidas/vector-not-found.png";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import NavBar from "../../Header/NavBar";
 import { getDocsFiltered } from "../../../../../Redux/actions/doctorActions";
-import DoctorBadge from "./Badge";
 import Pagination from "./Pagination";
+import TopDoctors from "../../TopDoctors/TopDoctors";
+import Filters from "./Filters";
 
 export default function DoctorsRoster() {
   const dispatch = useDispatch();
   const allBadges = useSelector((state) => state.doctores.newFilter);
-  const [badgesPerPage] = useState(5);
+  const [badgesPerPage] = useState(9);
   const [currentPage, setCurrentPage] = useState(1);
-  const [error, setError] = useState("")
 
   const indexOfLastBadge = currentPage * badgesPerPage;
   const indexOfFirstBadge = indexOfLastBadge - badgesPerPage;
@@ -23,31 +24,38 @@ export default function DoctorsRoster() {
 
   useEffect(() => {
     dispatch(getDocsFiltered());
-    setError("No se encontraron resultados para su busqueda")
-  }, []);
-
-  const rol = JSON.parse(sessionStorage.getItem('Rol'))
-  
+    return () => {
+      sessionStorage.removeItem('actualSearch');
+    }
+  }, [dispatch]);
 
   return (
-    <main className=' min-h-screen bg-[#E7EFFD] bg-repeat'>
-      <NavBar/>
-
-      <article className="flex flex-col gap-6 p-6 items-center">
-        {displayedBadges.length < 1 ? <p>{error}</p>  : displayedBadges.map((e) => {
+    <>
+    <NavBar/>
+    <main className={styles.MainContainer}>
+      <section className={styles.FilterContainer}>  
+        <Filters/> 
+      </section>
+      <h2 className={styles.CountSearch}>{allBadges.length === 0 ? `No se encontraron resultados a su busqueda` : `Se encontraron ${allBadges.length} resultados a su busqueda`}</h2>
+      <section className={styles.ContainerCards}>
+        {displayedBadges.length === 0 ? <img className={styles.NotFound} src={NotFound} alt="not-found"/>  : displayedBadges.map((doctor) => {
 
           return (
-            <Link to={ rol === 'ADMIN' ?  `/admin/doctors/${e._id}` : rol === 'DOCTOR' ?  `/doctor/doctors/${e._id}` : rol === 'PATIENT' ?  `/patient/doctors/${e._id}` : `/doctors/${e._id}`  }>
-              <DoctorBadge
-                key={e._id}
-                name={e.name}
-                specialties={e.specialities.join(", ")}
-                image= {e.image}
-              />
-            </Link>
+            <TopDoctors 
+            key = {doctor._id} 
+            id = {doctor._id}
+            name = {doctor.name}
+            specialities = {doctor.specialities}
+            rating = {doctor.rating}
+            schedule = {doctor.schedule.hour}
+            address = {doctor.address}
+            image = {doctor.image}
+            price = {doctor.checkUpPrice}
+            details = {"Full"}
+            />
           );
         })}
-      </article>
+      </section>
       <section className="flex flex-col items-center">
         <Pagination
           badgesPerPage={badgesPerPage}
@@ -56,5 +64,6 @@ export default function DoctorsRoster() {
         />
       </section>
     </main>
+    </>
   );
 }
