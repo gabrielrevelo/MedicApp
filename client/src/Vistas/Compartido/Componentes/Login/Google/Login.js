@@ -5,7 +5,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-export default function Google({ login, className, rol }) {
+export default function Google({ login, className}) {
   const navigate = useNavigate();
   const clientId =
     "31532081050-nrgri514im6srt8c3e4thvg2dg6ionem.apps.googleusercontent.com";
@@ -22,12 +22,11 @@ export default function Google({ login, className, rol }) {
       url: "/auth/google",
       method: "POST",
       data: { google: response.tokenId,
-        rol: rol
+
       },
     });
-    console.log(respuesta, 'esteban');
-    console.log(respuesta.data.token, "token");
-    console.log(respuesta.data.data, "data");
+   ;
+   console.log(respuesta.data,"isActive en google");
     localStorage.setItem("auth-token", JSON.stringify(respuesta.data.token));
     localStorage.setItem("User", JSON.stringify(respuesta.data.data));
     window.sessionStorage.setItem(
@@ -35,10 +34,14 @@ export default function Google({ login, className, rol }) {
       JSON.stringify(respuesta.data.data.rol)
     );
     window.sessionStorage.setItem("isAuth", true);
-    login();
-    // if (respuesta.data.data.rol === 'PATIENT') {
-    //         navigate('/')
-    //     }
+    if(!respuesta.data.data.isActive){
+      localStorage.setItem("auth-token",JSON.stringify(""));
+      localStorage.setItem("User", JSON.stringify(""));
+      Swal.fire("Esta cuenta ha sido temporalmente baneada. Por favor comunicate con el adminisrtador o ingresa con otra cuenta")
+      return  navigate("/")
+  }else{
+  login();
+}
   };
 
   const customStyle = {

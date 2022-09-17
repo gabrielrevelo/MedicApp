@@ -1,64 +1,31 @@
 import { HiLocationMarker } from "react-icons/hi";
 import { HiOutlinePhone } from "react-icons/hi";
+import TopDoctors from "../../../../../Compartido/Componentes/TopDoctors/TopDoctors";
+import icon from "../../Assets/ico-dark.png"
 
 const Main = ({ doctor }) => {
   return (
-    <div>
-      <div>
-        <p className="text-[#292F53] text-xl font-poppins mb-5">
-          Asi apareces en MedicApp:
-        </p>
-        <div className="flex justify-center">
-          <section className="bg-white w-[550px] h-fit flex flex-row p-3 rounded items-center">
-            <img
-              src={doctor && doctor.image}
-              alt={doctor && doctor.name}
-              className="w-40 h-40 rounded-full object-cover border-solid border-2 border-[#1479FF] "
-            />
-            <div className="ml-4">
-              <p className="font-poppins tracking-wide mt-1 mb-2 ">
-                {doctor && doctor.name}
-              </p>
-              <p className="font-raleway text-[#292f536f] -mt-2 mb-2  text-xs">
-                Licencia: {doctor?.license}
-              </p>
-              {doctor &&
-                doctor.specialities.map((speciality) => {
-                  return (
-                    <span
-                      key={speciality}
-                      className="font-raleway text-[#292f536f] mt-1 mb-2 "
-                    >
-                      {speciality} |{" "}
-                    </span>
-                  );
-                })}
-              <p className="font-raleway text-[#292f53b8] text-sm mt-2 mb-2 flex flex-row ">
-                {" "}
-                <span className="mr-2">
-                  <HiLocationMarker />
-                </span>{" "}
-                {doctor?.city}, <span className="ml-2">{doctor?.country}</span>
-              </p>
-              <p className="font-raleway text-[#292f536f] mt-2 mb-2 ">
-                {" "}
-                Precio consulta: {doctor?.checkUpPrice}
-              </p>
-
-              <span className="font-raleway w-fit text-[#1479FF] align-middle rounded flex flex-row ">
-                {" "}
-                <span className="mt-1">
-                  <HiOutlinePhone />
-                </span>
-                :{" "}
-                <span className="text-[#1479FF] tracking-[.10em]">
-                  {doctor?.phoneNumber}
-                </span>{" "}
-              </span>
-            </div>
-          </section>
+    <div className="flex flex-col items-center w-full">
+      <p className="flex gap-2 text-[#292F53] text-xl font-poppins mb-5">
+        <img src={icon} alt="icon" className="w-7 h-7"/>
+        Asi apareces en MedicApp:
+      </p>
+      {doctor ? (
+        <div className="scale-75 sm:w-1/3 sm:scale-100 w-full flex justify-center">
+          <TopDoctors
+            key={doctor._id}
+            id={doctor._id}
+            name={doctor.name}
+            specialities={doctor.specialities}
+            rating={doctor.rating}
+            schedule={doctor.schedule.hour}
+            address={doctor.address}
+            image={doctor.image}
+            price={doctor.checkUpPrice}
+            details={"Full"}
+          />
         </div>
-      </div>
+      ) : null}
     </div>
   );
 };

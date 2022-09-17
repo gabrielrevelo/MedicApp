@@ -73,13 +73,14 @@
 
 .MenuOpen{
   transition: 2s ease-in-out;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   opacity: 1;
   z-index: 1;
 }
 
 .Menu li{
-  margin-bottom: 20px;
   text-align: right;
   cursor: pointer;
   transition: .7s;
@@ -90,11 +91,4 @@
   transition: .3s;
 }
 
-.Menu li:last-child{
-  margin-bottom: 0;
-  margin-top: 20px;
-  color: #1479FF;
-  font-size: 1rem;
-  font-weight: 600;
-  border-bottom: 1px solid rgba(20, 121, 255, .2);
-}
+

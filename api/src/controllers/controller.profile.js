@@ -26,6 +26,11 @@ const controllerProfile = {
               throwError(1202);
             }
             const appointments = await Appointment.find({doctor: id})
+            .populate({
+                path: 'patient',
+                model: 'Patient',
+                select: ['name', 'email']
+              })
             return res.status(200).send({ data: {doctor: doctorById, appointments: appointments }});
         } catch (error) {
             next(error)

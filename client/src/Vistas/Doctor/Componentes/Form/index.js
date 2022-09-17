@@ -40,34 +40,42 @@ export default function Registro() {
     "Gastroenterología",
   ];
 
-  const [errors, setErrors] = useState({
+  const [inputErrors, setInputErrors] = useState({
     name: "",
   });
 
   function validar(input) {
     let errors = {};
-    if (!input.name) errors.name = "Se requiere un nombre";
-    if (!input.lastName) errors.lastName = "Se requiere un apellido";
+    if (!input.name) errors.name = "Ingrese un Nombre";
+    if (!input.country) errors.country = "Ingrese un Pais";
+    if (!input.city) errors.city = "Ingrese una Ciudad";
+    if (!input.address) errors.address = "Ingrese una Ciudad";
+    if (!input.license) errors.license = "Ingrese una Licencia";
+    if (!input.phoneNumber) errors.phoneNumber = "Ingrese un Telefono";
+    if (Number(input.hour[0].substr(0, 2)) > Number(input.hour[1].substr(0, 2)))
+      errors.hour = "Horario invalido";
+    if (!input.checkUpPrice) errors.checkUpPrice = "Ingrese una Tarifa";
+    if (!input.lastName) errors.lastName = "Ingrese un apellido";
     if (!input.password) errors.password = "Debe ingresar una contraseña";
+    if (!input.password) errors.password = "Ingrese una contraseña.";
     if (!input.specialities)
       errors.specialities = "Se debe ingresar al menos 1 especialidad";
-    if (!input.email) errors.email = "El email es obligatorio";
+    if (!input.email) errors.email = "Ingrese un Email";
     if (input.specialities.length > 2)
       errors.specialities = "El maximo de especialidades es 3";
     if (!/^[0-9]+$/.test(input.license))
       errors.license = "La licencia debe ser numerica";
     if (!/^[0-9]+$/.test(input.phoneNumber))
-      errors.phoneNumber = "El numero de telefono SOLO puede contener numeros";
+      errors.phoneNumber = "Ingrese un telefono valido";
     if (/^[^a-zA-Z]/.test(input.name))
       errors.name = "Los caracteres especiales no estan permitidos";
     if (
       /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(input.email) ===
       false
     )
-      errors.email = "Email debe ser de la forma: doctor_app@gmail.com";
+      errors.email = "Formato incorrecto";
     if (input.rpassword !== input.password)
       errors.rpassword = "Las contraseñas no coinciden";
-
     return errors;
   }
 
@@ -76,13 +84,15 @@ export default function Registro() {
       ...input,
       [e.target.name]: e.target.value,
     });
-    setErrors(
+    setInputErrors(
       validar({
         ...input,
         [e.target.name]: e.target.value,
       })
     );
   }
+
+  console.log(inputErrors);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -121,7 +131,16 @@ export default function Registro() {
     let hour = [...input.hour];
     if (e.target.id === "first") hour[0] = e.target.value;
     if (e.target.id === "second") hour[1] = e.target.value;
+    console.log(input.hour[0].substring(0, 2));
+    console.log(input.hour[1].substring(0, 2));
     setInput({ ...input, hour });
+
+    setInputErrors(
+      validar({
+        ...input,
+        hour
+      })
+    );
   }
 
   function handleImage(imgUrl) {
@@ -131,103 +150,96 @@ export default function Registro() {
   return (
     <>
       <NavBar />
-      <div className="bg-[#E7EFFD] py-10 flex justify-center">
+      <div className="flex justify-center lg:py-10">
         <form
-          className="bg-white w-1/2 flex flex-col rounded p-10 mx-10"
+          className="w-full font-poppins text-sm bg-white flex flex-col rounded-lg p-10 lg:w-1/2 text-[#292F53]"
           onSubmit={(e) => handleSubmit(e)}
         >
-          <div className="mb-6">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-              Nombre
-            </label>
-            <input
-              type="text"
-              name="name"
-              value={input.name}
-              onChange={(e) => handleChange(e)}
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-              required=""
-            />
-            {errors.name ? <p>{errors.name}</p> : null}
+          <label>Nombre:</label>
+          <input
+            type="text"
+            name="name"
+            value={input.name}
+            onChange={(e) => handleChange(e)}
+            className="w-full p-4 text-sm font-poppins rounded-lg bg-white my-2 shadow-md border"
+            required=""
+          />
+          <div className="h-3 text-xs font-poppins text-red-600 text-end">
+            {inputErrors.name}
           </div>
-          <div className="mb-6 flex gap-5">
-            <div className="w-1/2">
-              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                Pais
-              </label>
+          <div className="flex flex-col sm:gap-5 sm:flex-row">
+            <div className="sm:w-1/2">
+              <label>Pais:</label>
               <input
                 type="text"
                 name="country"
                 value={input.country}
                 onChange={(e) => handleChange(e)}
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                className="w-full p-4 text-sm font-poppins rounded-lg bg-white my-2 shadow-md border"
                 required=""
               />
+              <div className="h-3 text-xs font-poppins text-red-600 text-end">
+                {inputErrors.country}
+              </div>
             </div>
-            <div className="w-1/2">
-              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                Ciudad
-              </label>
+            <div className="sm:w-1/2">
+              <label>Ciudad:</label>
               <input
                 type="text"
                 name="city"
                 value={input.city}
                 onChange={(e) => handleChange(e)}
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                className="w-full p-4 text-sm font-poppins rounded-lg bg-white my-2 shadow-md border"
                 required=""
               />
+              <div className="h-3 text-xs font-poppins text-red-600 text-end">
+                {inputErrors.city}
+              </div>
             </div>
           </div>
-          <div className="mb-6">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-              Direccion
-            </label>
-            <input
-              type="text"
-              name="address"
-              value={input.address}
-              onChange={(e) => handleChange(e)}
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-              required=""
-            />
-            {errors.address ? <p>{errors.address}</p> : null}
+          <label>Direccion:</label>
+          <input
+            type="text"
+            name="address"
+            value={input.address}
+            onChange={(e) => handleChange(e)}
+            className="w-full p-4 text-sm font-poppins rounded-lg bg-white my-2 shadow-md border"
+            required=""
+          />
+          <div className="h-3 text-xs font-poppins text-red-600 text-end">
+            {inputErrors.address}
           </div>
-          <div className="mb-6">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-              Numero de Licencia
-            </label>
-            <input
-              type="text"
-              name="license"
-              value={input.license}
-              onChange={(e) => handleChange(e)}
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-              required=""
-            />
-            {errors.license ? <p>{errors.license}</p> : null}
+          <label>Licencia:</label>
+          <input
+            type="text"
+            name="license"
+            value={input.license}
+            onChange={(e) => handleChange(e)}
+            className="w-full p-4 text-sm font-poppins rounded-lg bg-white my-2 shadow-md border"
+            required=""
+          />
+          <div className="h-3 text-xs font-poppins text-red-600 text-end">
+            {inputErrors.license}
           </div>
-          <div className="mb-6">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-              Numero de Telefono
-            </label>
-            <input
-              type="text"
-              name="phoneNumber"
-              value={input.phoneNumber}
-              onChange={(e) => handleChange(e)}
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-              required=""
-            />
-            {errors.phoneNumber ? <p>{errors.phoneNumber}</p> : null}
+          <label>Telefono:</label>
+          <input
+            type="text"
+            name="phoneNumber"
+            value={input.phoneNumber}
+            onChange={(e) => handleChange(e)}
+            className="w-full p-4 text-sm font-poppins rounded-lg bg-white my-2 shadow-md border"
+            required=""
+          />
+          <div className="h-3 text-xs font-poppins text-red-600 text-end">
+            {inputErrors.phoneNumber}
           </div>
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
-            Especialidad
-          </label>
+          <label>Especialidad:</label>
           <select
+            name="hour"
             onChange={(e) => {
               handleSelect(e);
             }}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="w-full p-4 text-sm font-poppins rounded-lg bg-white my-2 shadow-md border"
           >
             <option value={""} selected>
               Seleccione una Opcion
@@ -238,15 +250,13 @@ export default function Registro() {
               </option>
             ))}
           </select>
-          {errors.specialities ? <p>{errors.specialities}</p> : null}
-          <br />
-
-          <div className="mb-6 flex gap-5">
-            <div className="w-1/2">
-              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                Horario
-              </label>
-              <div className="flex justify-evenly">
+          <div className="h-3 text-xs font-poppins text-red-600 text-end">
+            {inputErrors.specialities}
+          </div>
+          <div className="flex flex-col sm:gap-5 sm:flex-row">
+            <div className="sm:w-1/2">
+              <label>Horario:</label>
+              <div className="w-full p-4 text-sm font-poppins rounded-lg bg-white my-2 shadow-md border">
                 <select id="first" onChange={(e) => handleHour(e)}>
                   <option value="07:00" selected>
                     7 AM
@@ -282,100 +292,77 @@ export default function Registro() {
                   <option value="19:00">7 PM</option>
                 </select>
               </div>
+              <div className="h-3 text-xs font-poppins text-red-600 text-end">
+                {inputErrors.hour}
+              </div>
             </div>
-            <div className="w-1/2">
-              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                Valor de la Cita
-              </label>
+            <div className="sm:w-1/2">
+              <label>Tarifa:</label>
               <input
                 type="text"
                 name="checkUpPrice"
                 placeholder="$"
                 value={input.checkUpPrice}
                 onChange={(e) => handleChange(e)}
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                className="w-full p-4 text-sm font-poppins rounded-lg bg-white my-2 shadow-md border"
                 required=""
               />
+              <div className="h-3 text-xs font-poppins text-red-600 text-end">
+                {inputErrors.checkUpPrice}
+              </div>
             </div>
           </div>
-          <div className="mb-6">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-              Imagen o Foto de Perfil
-            </label>
-            <InputImage
-              action={handleImage}
-              imgUrl={input.image}
-              className="flex gap-4 items-center"
-            />
+          <label>Imagen o foto de perfil:</label>
+          <InputImage
+            action={handleImage}
+            imgUrl={input.image}
+            className="flex flex-col-reverse gap-3 mt-3 items-center text-xs xl:flex-row p-4 shadow-md border rounded-lg my-2"
+          />
+          <div className="h-3 text-xs font-poppins text-red-600 text-end">
+            {}
           </div>
-          <div className="mb-6">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-              Correo Electronico
-            </label>
-            <input
-              type="email"
-              name="email"
-              value={input.email}
-              onChange={(e) => handleChange(e)}
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-              required=""
-            />
-            {errors.email ? <p>{errors.email}</p> : null}
+          <label>Correo Electronico:</label>
+          <input
+            type="email"
+            name="email"
+            value={input.email}
+            onChange={(e) => handleChange(e)}
+            className="w-full p-4 text-sm font-poppins rounded-lg bg-white my-2 shadow-md border"
+            required=""
+          />
+          <div className="h-3 text-xs font-poppins text-red-600 text-end">
+            {inputErrors.email}
           </div>
-          <div className="mb-6">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-              Contraseña
-            </label>
-            <input
-              type="password"
-              name="password"
-              value={input.password}
-              onChange={(e) => handleChange(e)}
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-              required=""
-            />
-            {errors.password ? <p>{errors.password}</p> : null}
+          <label>Contraseña:</label>
+          <input
+            type="password"
+            name="password"
+            value={input.password}
+            onChange={(e) => handleChange(e)}
+            className="w-full p-4 text-sm font-poppins rounded-lg bg-white my-2 shadow-md border"
+            required=""
+          />
+          <div className="h-3 text-xs font-poppins text-red-600 text-end">
+            {inputErrors.password}
           </div>
-          <div className="mb-6">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-              Repita su contraseña
-            </label>
-            <input
-              type="password"
-              name="rpassword"
-              value={input.rpassword}
-              onChange={(e) => handleChange(e)}
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-              required=""
-            />
-            {errors.rpassword ? <p>{errors.rpassword}</p> : null}
-          </div>
-          <div className="flex items-start mb-6">
-            <div className="flex items-center h-5">
-              <input
-                name="terms"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
-                required=""
-              />
-            </div>
-            <label className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-              Acepto los{" "}
-              <a
-                href="#"
-                className="text-blue-600 hover:underline dark:text-blue-500"
-              >
-                terminos y condiciones
-              </a>
-            </label>
+          <label>Repita su contraseña:</label>
+          <input
+            type="password"
+            name="rpassword"
+            value={input.rpassword}
+            onChange={(e) => handleChange(e)}
+            className="w-full p-4 text-sm font-poppins rounded-lg bg-white my-2 shadow-md border"
+            required=""
+          />
+          <div className="h-3 text-xs font-poppins text-red-600 text-end">
+            {inputErrors.rpassword}
           </div>
           <button
             type="submit"
             // disabled={Object.keys(errors).length === 0 ? false : true}
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="text-white w-full p-4 font-poppins text-sm rounded-lg mt-5 bg-[#292F53] hover:bg-[#1479FF] focus:outline-none "
           >
-            Registar nueva cuenta
+            Registarme
           </button>
         </form>
       </div>

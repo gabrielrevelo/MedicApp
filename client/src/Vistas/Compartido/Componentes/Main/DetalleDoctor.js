@@ -53,7 +53,7 @@ function DetalleDoctor (){
   function handleClickHour(e){
     setSelectedHour(e.target.value)
   }
-
+  
   // function handleDelete(){
   //   window.location.reload(false);
   // }
@@ -64,13 +64,23 @@ function DetalleDoctor (){
 
   },[dispatch, doctor?.rating, idDoctor, rating]);
   
+  //variables para setear localStorage
+  const address = doctor && doctor.address
+  const country = doctor && doctor.country
 
- localStorage.setItem('hour',selectedHour)
- localStorage.setItem('date',selectedDate)
+  //Sets Storage
+  localStorage.setItem('hour',selectedHour)
+  localStorage.setItem('date',selectedDate)
+  localStorage.setItem('address',address)
+  localStorage.setItem('country', country) 
   // console.log(selectedDate ,'selected date');
   // console.log(selectedHour, 'selectred hour');
 
   const user = JSON.parse(window.localStorage.getItem('User'))
+  
+  //trae datos de mapa
+  const lng = localStorage.getItem('longitude');
+  const lat = localStorage.getItem('latitude');
 
   return(
       <>
@@ -90,9 +100,8 @@ function DetalleDoctor (){
               })}
             <p className='font-raleway text-[#292f53b8] text-sm mt-2 mb-2 flex flex-row '> <span className='mr-2'><HiLocationMarker/></span>  {doctor?.city}, <span className='ml-2'>{doctor?.country}</span></p>
             <p className='font-raleway text-[#292f536f] mt-2 mb-2 '> Precio consulta: {doctor?.checkUpPrice}</p>
-
-              
-
+            <a href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}>mapa</a>
+            
             <span className='font-raleway w-fit text-[#1479FF] align-middle rounded flex flex-row '> <span className='mt-1'><HiOutlinePhone/></span>: <span className='text-[#1479FF] tracking-[.10em]'>{doctor?.phoneNumber}</span> </span>
 
             <div className='text-[#1479FF] mt-2 mb-2 '>
@@ -102,7 +111,6 @@ function DetalleDoctor (){
             </div>
            
             </div>
-
           </section>
           <section className='bg-white w-[550px] h-fit mt-10 rounded-t' >
           <h1 className='bg-[#1479FF] font-poppins text-white h-10 align-middle	p-2 rounded-t' >Reseñas</h1>

@@ -43,7 +43,7 @@ export default function CreatePatient() {
       /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(input.email) ===
       false
     )
-      errors.email = "Email debe ser de la forma: doctor_app@gmail.com.";
+      errors.email = "Formato incorrecto";
     if (input.password.length < 8) {
       errors.password = "Se requieren al menos 8 caracteres.";
     }
@@ -54,7 +54,7 @@ export default function CreatePatient() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    
+
     try {
       const res = await axios.post("/patients", {
         name: input.name,
@@ -80,96 +80,90 @@ export default function CreatePatient() {
   return (
     <>
       <NavBar />
-      <div className="py-10 flex justify-center">
+      <div className="flex justify-center lg:py-10">
         <form
-          className="bg-white w-1/2 flex flex-col rounded p-10 mx-10"
+          className="w-full font-poppins text-sm bg-white flex flex-col rounded-lg p-10 lg:w-1/2 text-[#292F53]"
           onSubmit={(e) => handleSubmit(e)}
         >
-          <div className="mb-6">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-              Nombre:
-            </label>
-            <input
-              type="text"
-              name="name"
-              value={input.name}
-              onChange={(e) => handleChange(e)}
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-              required={true}
-            />
-            {inputErrors.name ? <p>{inputErrors.name}</p> : null}
+          <label>Nombre:</label>
+          <input
+            type="text"
+            name="name"
+            value={input.name}
+            onChange={(e) => handleChange(e)}
+            className="w-full p-4 text-sm font-poppins rounded-lg bg-white my-2 shadow-md border"
+            required={true}
+          />
+          <div className="h-3 text-xs font-poppins text-red-600 text-end">
+            {inputErrors.name}
           </div>
-          <div className="mb-6">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-              Numero de telefono:
-            </label>
-            <input
-              type="text"
-              name="phoneNumber"
-              value={input.phoneNumber}
-              onChange={(e) => handleChange(e)}
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-              required={true}
-            />
-            {inputErrors.phoneNumber ? <p>{inputErrors.phoneNumber}</p> : null}
+
+          <label>Numero de telefono:</label>
+          <input
+            type="text"
+            name="phoneNumber"
+            value={input.phoneNumber}
+            onChange={(e) => handleChange(e)}
+            className="w-full p-4 text-sm font-poppins rounded-lg bg-white my-2 shadow-md border"
+            required={true}
+          />
+          <div className="h-3 text-xs font-poppins text-red-600 text-end">
+            {inputErrors.phoneNumber}
           </div>
-          <div className="mb-6">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-              Imagen o Foto de Perfil
-            </label>
-            <InputImage
-              action={handleImage}
-              imgUrl={input.image}
-              className="flex gap-4 items-center"
-            />
+
+          <label>Imagen o Foto de Perfil:</label>
+          <InputImage
+            action={handleImage}
+            imgUrl={input.image}
+            className="flex flex-col-reverse gap-3 mt-3 items-center text-xs xl:flex-row p-4 shadow-md border rounded-lg my-2"
+          />
+          <div className="h-3 text-xs font-poppins text-red-600 text-end">
           </div>
-          <div className="mb-6">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-              Email:
-            </label>
-            <input
-              type="text"
-              name="email"
-              value={input.email}
-              onChange={(e) => handleChange(e)}
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-              required={true}
-            />
-            {inputErrors.email ? <p>{inputErrors.email}</p> : null}
+
+          <label>Email:</label>
+          <input
+            type="text"
+            name="email"
+            value={input.email}
+            onChange={(e) => handleChange(e)}
+            className="w-full p-4 font-poppins rounded-lg bg-white my-2 shadow-md border"
+            required={true}
+          />
+          <div className="h-3 text-xs font-poppins text-red-600 text-end">
+            {inputErrors.email}
           </div>
-          <div className="mb-6">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-              Contraseña:
-            </label>
-            <input
-              type="password"
-              name="password"
-              value={input.password}
-              onChange={(e) => handleChange(e)}
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-              required={true}
-            />
-            {inputErrors.password ? <p>{inputErrors.password}</p> : null}
+
+          <label>Contraseña:</label>
+          <input
+            type="password"
+            name="password"
+            value={input.password}
+            onChange={(e) => handleChange(e)}
+            className="w-full p-4 text-sm font-poppins rounded-lg bg-white my-2 shadow-md border"
+            required={true}
+          />
+          <div className="h-3 text-xs font-poppins text-red-600 text-end">
+            {inputErrors.password}
           </div>
-          <div className="mb-6">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-              Repita su contraseña:
-            </label>
-            <input
-              type="password"
-              name="rpassword"
-              value={input.rpassword}
-              onChange={(e) => handleChange(e)}
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-              required={true}
-            />
-            {inputErrors.rpassword ? <p>{inputErrors.rpassword}</p> : null}
+
+          <label>Repita su contraseña:</label>
+          <input
+            type="password"
+            name="rpassword"
+            value={input.rpassword}
+            onChange={(e) => handleChange(e)}
+            className="w-full p-4 text-sm font-poppins rounded-lg bg-white my-2 shadow-md border"
+            required={true}
+          />
+          <div className="h-3 text-xs font-poppins text-red-600 text-end">
+            {inputErrors.rpassword}
           </div>
+
           <button
             type="submit"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="text-white w-full p-4 font-poppins text-sm rounded-lg mt-5 bg-[#292F53] hover:bg-[#1479FF] focus:outline-none "
           >
-            Registrarme como paciente
+            Registrarme
           </button>
         </form>
       </div>

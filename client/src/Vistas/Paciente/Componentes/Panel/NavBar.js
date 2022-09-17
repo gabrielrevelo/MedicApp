@@ -19,13 +19,6 @@ export default function NavBar({ setSection }) {
             onClick={() => setSection("citas")}>
             Citas
           </button>
-
-          <button
-            className="font-poppins text-lg text-white rounded w-40 h-10  mr-3 ml-3 mt-10 mb-9"
-            onClick={() => setSection("reseñas")}>
-            Reseñas
-          </button>
-
         </div>
       </div>
     </>

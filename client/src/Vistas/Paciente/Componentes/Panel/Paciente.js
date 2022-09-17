@@ -5,7 +5,6 @@ import { getPatients, getPatientToken } from '../../../../Redux/actions/generalA
 
 import InfoData from '../../../Doctor/Componentes/Panel/componentes/InfoData';
 import Citas from './Citas';
-import Resenas from './Resenas';
 import NavBar from './NavBar';
 import TopBar from './topBar';
 
@@ -41,18 +40,12 @@ export default function Paciente() {
     <NavBar setSection={setSection} />
         <div className= "flex flex-col px-10 py-5 gap-5 w-11/12">
         <TopBar imgProfile={filtroPaciente[0]?.image} />
-        <div className=" rounded -mr-4 h-fit mb-5 flex flex-row justify-center mt-5" id='InfoCards'>
+        <div className=" rounded  h-fit mb-5 flex flex-row items-end justify-end mt-5 mr-5">
             <InfoData 
                     className={'w-48  bg-indigo-300  h-24 rounded m-3 flex flex-col justify-around'}
                     text='Total citas'
                     icon = {<BsPeopleFill/>}
                     dato = {profile?.length}
-            />
-            <InfoData 
-                    className={'w-48   bg-green-300 h-24 rounded m-3 flex flex-col justify-around'}
-                    text='Total Reseñas'
-                    icon = {<BsPeopleFill/>}
-                    dato = '0'
             />
         </div>
 
@@ -64,10 +57,7 @@ export default function Paciente() {
             <p className="text-[#292F53] text-lg tracking-wider font-raleway  mt-3 ml-4 mb-4"> En este panel podras consultar tus citas medicas, y podras dejar reseñas a los medicos que has visitado!</p>
             </>
             : null}
-            {section === "citas" ? <Citas 
-            Resenas = {<Resenas/>}
-            /> : null}
-            {section === "reseñas" ? <Resenas /> : null}
+            {section === "citas" ? <Citas /> : null}
         </div>
         </div>
     </div>

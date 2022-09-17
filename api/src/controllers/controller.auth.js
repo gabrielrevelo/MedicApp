@@ -6,8 +6,7 @@ const Jwt = require("jsonwebtoken");
 const { OAuth2Client } = require("google-auth-library");
 
 const controllerAuth = {
-  
-  google: async (req, res,next) => {
+  google: async (req, res, next) => {
     const { google, rol } = req.body;
     console.log(rol);
     const authClient = new OAuth2Client(
@@ -23,16 +22,15 @@ const controllerAuth = {
           "31532081050-nrgri514im6srt8c3e4thvg2dg6ionem.apps.googleusercontent.com",
       })
       .then(async (response) => {
-     
-          console.log(response)
-        const { email} = response.payload;
+        console.log(response);
+        const { email } = response.payload;
 
         const patient = await Patient.findOne({ email: email });
         const doctor = await Doctor.findOne({ email: email });
         const admin = await Admin.findOne({ email: email });
-        console.log(patient,"paciente")
+        console.log(patient, "paciente");
 
-        try{
+        try {
           // if(!patient && rol === 'PATIENT'){
           //   const newPatient = await Patient.create({
           //     email: response.email,
@@ -40,7 +38,7 @@ const controllerAuth = {
           //     image: response.picture,
           //     password:'',
           //     phoneNumber: 44444,
-          //   }) 
+          //   })
           //   res.status(200).json({data:newPatient})
 
           // }
@@ -49,20 +47,20 @@ const controllerAuth = {
 
           //   })
           // }
-        if (patient) {
-          const tokenPatient = Jwt.sign(
-            { user_id: patient.id },
-            "pacientetoken"
-          ); // process.env.TOKEN_SECRET_ADMIN )
-          const data = {
-            name: patient.name,
-            email: patient.email,
-            image: patient.image,
-            rol: "PATIENT",
-          };
-          return res.status(200).json({ data: data, token: tokenPatient });
-        }
-        if (doctor) {
+          if (patient) {
+            const tokenPatient = Jwt.sign(
+              { user_id: patient.id },
+              "pacientetoken"
+            ); // process.env.TOKEN_SECRET_ADMIN )
+            const data = {
+              name: patient.name,
+              email: patient.email,
+              image: patient.image,
+              rol: "PATIENT",
+            };
+            return res.status(200).json({ data: data, token: tokenPatient });
+          }
+          if (doctor) {
             const tokenDoctor = Jwt.sign({ user_id: doctor.id }, "doctortoken"); // process.env.TOKEN_SECRET_ADMIN )
             const data = {
               name: doctor.name,
@@ -70,26 +68,24 @@ const controllerAuth = {
               rol: "DOCTOR",
             };
             return res.status(200).json({ data: data, token: tokenDoctor });
-        }
-        if (admin) {
-            const tokenAdmin = Jwt.sign({ user_id: admin.id }, "admintoken"); // process.env.TOKEN_SECRET_ADMIN )
-        const data = {
-          name: admin.name,
-          email: admin.email,
-          rol: "ADMIN",
-        };
-        return res.status(200).json({ data: data, token: tokenAdmin });
-        }
-        if (!patient || !doctor || !admin) {
-            return res
-              .status(404)
-              .json({
-                succes: false,
-                error: "Email ó Password Incorrecto paciente",
-              });
           }
-        }catch(error){
-            next(error);
+          if (admin) {
+            const tokenAdmin = Jwt.sign({ user_id: admin.id }, "admintoken"); // process.env.TOKEN_SECRET_ADMIN )
+            const data = {
+              name: admin.name,
+              email: admin.email,
+              rol: "ADMIN",
+            };
+            return res.status(200).json({ data: data, token: tokenAdmin });
+          }
+          if (!patient && !doctor && !admin) {
+            return res.status(404).json({
+              succes: false,
+              error: "Email ó Password Incorrecto paciente",
+            });
+          }
+        } catch (error) {
+          next(error);
         }
       });
   },
@@ -98,66 +94,63 @@ const controllerAuth = {
       const { google, rol } = req.body;
       const token = new OAuth2Client(
         "31532081050-nrgri514im6srt8c3e4thvg2dg6ionem.apps.googleusercontent.com"
-        );
-        // console.log("googlepas")
-        // console.log(google)
-        // console.log(rol, 'rol');
-    // console.log(authClient, 'cliente')
+      );
+      // console.log("googlepas")
+      // console.log(google)
+      // console.log(rol, 'rol');
+      // console.log(authClient, 'cliente')
 
       // res.status(200).json({data: token})
 
-    const user = await token.verifyIdToken({
+      const user = await token.verifyIdToken({
         idToken: google,
         audience:
           "31532081050-nrgri514im6srt8c3e4thvg2dg6ionem.apps.googleusercontent.com",
-      })
+      });
       // console.log(user, 'user');
       // console.log(user.payload.email, 'user');
       const patient = await Patient.findOne({ email: user.payload.email });
-      
-      if(!patient && rol === 'PATIENT'){
+
+      if (!patient && rol === "PATIENT") {
         const newPatient = await Patient.create({
-              email: user.payload.email,
-              name: user.payload.name,
-              image: user.payload.picture,
-              password:'nuevo',
-              phoneNumber: 44444,
-            })
-            const tokenPatient = Jwt.sign({ user_id: newPatient.id }, "pacientetoken"); // process.env.TOKEN_SECRET_ADMIN )
-            const data = {
-              name: newPatient.name,
-              email: newPatient.email,
-              image: newPatient.image,
-              rol: "PATIENT",
-            };
-            return res.status(200).json({ data: data, token: tokenPatient });
+          email: user.payload.email,
+          name: user.payload.name,
+          image: user.payload.picture,
+          password: "nuevo",
+          phoneNumber: 44444,
+        });
+        console.log("newPatient", newPatient);
+        const tokenPatient = Jwt.sign(
+          { user_id: newPatient.id },
+          "pacientetoken"
+        ); // process.env.TOKEN_SECRET_ADMIN )
+        const data = {
+          isActive: newPatient.active ? true : false,
+          name: newPatient.name,
+          email: newPatient.email,
+          image: newPatient.image,
+          rol: "PATIENT",
+        };
+        return res.status(200).json({ data: data, token: tokenPatient });
       }
       if (patient) {
-          const tokenPatient = Jwt.sign(
-            { user_id: patient.id },
-            "pacientetoken"
-          ); // process.env.TOKEN_SECRET_ADMIN )
-          const data = {
-            name: patient.name,
-            email: patient.email,
-            image: patient.image,
-            rol: "PATIENT",
-          };
-          return res.status(200).json({ data: data, token: tokenPatient });
-        }
+        const tokenPatient = Jwt.sign({ user_id: patient.id }, "pacientetoken"); // process.env.TOKEN_SECRET_ADMIN )
+        const data = {
+          isActive: patient.active ? true : false,
+          name: patient.name,
+          email: patient.email,
+          image: patient.image,
+          rol: "PATIENT",
+        };
+        return res.status(200).json({ data: data, token: tokenPatient });
+      }
 
-
-
-      // const doctor = await Doctor.findOne({ email: payload.email });
-
-      console.log(user ,'user');
+      console.log(user, "user");
     } catch (error) {
-       next(error)
+      next(error);
     }
   },
 
-  
-  
   signIn: async (req, res, next) => {
     const { email, password } = req.body;
     if (!email || !password)
@@ -176,6 +169,7 @@ const controllerAuth = {
         }
         const tokenPatient = Jwt.sign({ user_id: patient.id }, "pacientetoken"); // process.env.TOKEN_SECRET_ADMIN )
         const data = {
+          isActive: patient.active,
           name: patient.name,
           email: patient.email,
           image: patient.image,
@@ -192,6 +186,7 @@ const controllerAuth = {
         }
         const tokenDoctor = Jwt.sign({ user_id: doctor.id }, "doctortoken"); // process.env.TOKEN_SECRET_ADMIN )
         const data = {
+          isActive: doctor.active,
           name: doctor.name,
           email: doctor.email,
           rol: "DOCTOR",
@@ -207,13 +202,14 @@ const controllerAuth = {
         }
         const tokenAdmin = Jwt.sign({ user_id: admin.id }, "admintoken"); // process.env.TOKEN_SECRET_ADMIN )
         const data = {
+          isActive: admin.active,
           name: admin.name,
           email: admin.email,
           rol: "ADMIN",
         };
         return res.status(200).json({ data: data, token: tokenAdmin });
       }
-      if (!patient || !doctor || !admin) {
+      if (!patient && !doctor && !admin) {
         return res
           .status(404)
           .json({

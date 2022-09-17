@@ -24,7 +24,7 @@ export default function InputImage({ action, imgUrl, className }) {
       <label className="block w-full">
         <input
           type="file"
-          className="block w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:bg-[#292F53] file:text-white hover:file:cursor-pointer"
+          className="block w-full text-[10px] file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:bg-[#292F53] file:hover:bg-[#1479FF] file:text-white hover:file:cursor-pointer"
           onChange={uploadImage}
         />
       </label>
