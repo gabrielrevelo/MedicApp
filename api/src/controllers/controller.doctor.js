@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 const controllerDoctors = {
   getAll: async (req, res, next) => {
     try {
-      const doctors = await Doctor.find();
+      const doctors = await Doctor.find({active: true});
       if (!doctors) {
         throwError(1201);
       }
