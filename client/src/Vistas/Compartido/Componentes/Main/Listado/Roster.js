@@ -39,7 +39,7 @@ export default function DoctorsRoster() {
       <h2 className={styles.CountSearch}>{allBadges.length === 0 ? `No se encontraron resultados a su busqueda` : `Se encontraron ${allBadges.length} resultados a su busqueda`}</h2>
       <section className={styles.ContainerCards}>
         {displayedBadges.length === 0 ? <img className={styles.NotFound} src={NotFound} alt="not-found"/>  : displayedBadges.map((doctor) => {
-
+          const splitAddress = doctor.address.split(",");
           return (
             <TopDoctors 
             key = {doctor._id} 
@@ -48,7 +48,7 @@ export default function DoctorsRoster() {
             specialities = {doctor.specialities}
             rating = {doctor.rating}
             schedule = {doctor.schedule.hour}
-            address = {doctor.address}
+            address = {splitAddress.slice(0, splitAddress.length-2).join(",")}
             image = {doctor.image}
             price = {doctor.checkUpPrice}
             details = {"Full"}

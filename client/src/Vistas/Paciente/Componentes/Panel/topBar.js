@@ -37,7 +37,7 @@ const TopBar = ({imgProfile}) => {
           <ul className={toggle ?`${styles.Menu} ${styles.MenuOpen}`: styles.Menu}>
             <li><Link to="/admin/home">Inicio</Link></li>
             <li>Configuración</li>
-            <Link to={LOGOUT_PATIENT}> cerrar sesion</Link>
+            <Link to={LOGOUT_PATIENT}> Cerrar sesion</Link>
           </ul>
         </div>
         

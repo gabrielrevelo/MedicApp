@@ -12,7 +12,7 @@ import Appointments from "../AppointmentSection/Appointments";
 import { getDoctors } from "../../../../Redux/actions/generalActionsDoctors";
 import { getPatients } from "../../../../Redux/actions/generalActionsPatients";
 import { getAppointments } from "../../../../Redux/actions/generalActionsAppointments";
-import { getAdmins } from "../../../../Redux/actions/generalActionsAdmins";
+import { getAdmins, changeSectionDashboard } from "../../../../Redux/actions/generalActionsAdmins";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -26,6 +26,9 @@ const Dashboard = () => {
     dispatch(getPatients());
     dispatch(getAdmins());
     dispatch(getAppointments());
+    return () => {
+      dispatch(changeSectionDashboard("Dashboard"));
+    }
   }, [dispatch]);
 
 

@@ -58,7 +58,7 @@ export default function Login(email, password) {
         method: "POST",
         data: input,
       });
-      
+
       console.log(response.data.data.isActive, "response en login");
       localStorage.setItem("auth-token", JSON.stringify(response.data.token));
       localStorage.setItem("User", JSON.stringify(response.data.data));
@@ -73,11 +73,13 @@ export default function Login(email, password) {
         password: "",
       });
       if (!response.data.data.isActive) {
-        localStorage.setItem("auth-token",JSON.stringify(""));
-        localStorage.setItem("User", JSON.stringify(""));
-        Swal.fire("Esta cuenta ha sido temporalmente baneada. Por favor comunicate con el adminisrtador o ingresa con otra cuenta")
+        sessionStorage.clear();
+        localStorage.clear();
+        Swal.fire(
+          "Esta cuenta ha sido temporalmente baneada. Por favor comunicate con el adminisrtador o ingresa con otra cuenta"
+        );
         return navigate("/");
-      } else{
+      } else {
         login();
       }
     } catch (error) {
@@ -120,12 +122,12 @@ export default function Login(email, password) {
                 />
                 <div className="h-6 flex text-xs font-poppins justify-between text-red-600">
                   <div className="">{errors.password}</div>
-                  {/* <Link
-                                        className="text-right text-slate-400 hover:underline hover:text-[#292F53]"
-                                        to="/"
-                                    >
-                                        Olvido su contraseña?
-                                    </Link> */}
+                  <Link
+                    className="text-right text-slate-400 hover:underline hover:text-[#292F53]"
+                    to="/forgotPassword"
+                  >
+                    Olvido su contraseña?
+                  </Link>
                 </div>
               </div>
 
@@ -154,7 +156,9 @@ export default function Login(email, password) {
                 {/* <Link to='/doctor'> */}
                 <button>Registrate como Doctor</button>
               </Link>
+          <Link to="/login/terminos" className="text-indigo-500">Terminos y Condiciones</Link>
             </form>
+
           </div>
           <div
             className="lg:flex w-1/2 hidden bg-no-repeat bg-cover relative items-center z-10"

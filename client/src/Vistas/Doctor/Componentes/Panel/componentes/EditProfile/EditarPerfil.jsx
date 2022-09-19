@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { editDoctor } from "../../../../../../Redux/actions/generalActionsDoctors";
 import InputImage from "../../../../../Compartido/Componentes/InputImage/InputImage";
 import icon from "../../Assets/ico-dark.png";
+import Modal from "../../../../../Compartido/Componentes/SwalStyled/index"
 
 const EditProfile = ({ info, setSection }) => {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const EditProfile = ({ info, setSection }) => {
     }
     console.log(input)
     dispatch(editDoctor(id, input));
-    alert("Edicion exitosa");
+    Modal.fire("Edicion exitosa");
   };
 
   function handleImage(imgUrl) {

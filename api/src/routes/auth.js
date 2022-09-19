@@ -8,6 +8,9 @@ router.post('/signin' , controllerAuth.signIn )
 // router.post("/google",  controllerAuth.google);
 router.post("/google",  controllerAuth.logGoogle);
 
+router.post("/forgotPassword",  controllerAuth.forgotPassword);
+router.post("/changePassword",  controllerAuth.changePassword);
+
 // router.get("/", controllerAdmins.getAll);
 // router.post("/",  controllerAdmins.createAdmin);
 // router.get("/:id", controllerAdmins.getAdmin);

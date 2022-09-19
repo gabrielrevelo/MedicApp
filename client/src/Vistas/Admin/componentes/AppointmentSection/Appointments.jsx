@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import moment from "moment";
 import styles from "./Appointments.module.css";
 import iconTitle from "../../assets/ico-dark.png";
-import iconAdd from "../../assets/dashboard/add-icon.svg";
-
 import { useSelector, useDispatch } from "react-redux";
 import iconDoctor from "../../assets/dashboard/icon-speciality.png";
 import iconAddress from "../../assets/dashboard/icon-address.png";
@@ -11,18 +9,15 @@ import iconPatient from "../../assets/dashboard/icon-license.png";
 
 import {
   getAppointments,
-  getAppointment,
   getAppointmentsBySearch
 } from "../../../../Redux/actions/generalActionsAppointments";
 import NotFoundAppointment from "./NotFoundAppointment";
 
 const Appointments = () => {
   const dispatch = useDispatch();
-  const { appointments, appointmentsFiltered } = useSelector((state) => state.generalAppointments);
+  const { appointmentsFiltered } = useSelector((state) => state.generalAppointments);
   const [query, setQuery] = useState("");
   const [form, setForm] = useState({
-    edit: false,
-    create: false,
     detail: false,
   });
 
@@ -72,6 +67,7 @@ const Appointments = () => {
           appointmentsFiltered?.map((appointment) => {
             return (
               <article className={styles.Card} key={appointment._id}>
+                {console.log(appointment.patient["name"])}
                 <div className={styles.AppointmentInfo}>
                   <img
                     src={iconAddress}

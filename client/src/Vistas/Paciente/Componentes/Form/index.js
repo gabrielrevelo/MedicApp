@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../../../Compartido/Componentes/Header/NavBar";
 import InputImage from "../../../Compartido/Componentes/InputImage/InputImage";
+import Modal from "../../../Compartido/Componentes/SwalStyled/index"
 
 export default function CreatePatient() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ export default function CreatePatient() {
     rpassword: "",
     image: "https://180dc.org/wp-content/uploads/2016/08/default-profile.png",
   });
-
+  
   function handleChange(e) {
     setInput({
       ...input,
@@ -52,6 +53,7 @@ export default function CreatePatient() {
     return errors;
   }
 
+
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -65,11 +67,16 @@ export default function CreatePatient() {
       });
       console.log(res);
       if (res.status === 201) {
-        alert("Usted se a registrado");
+        Modal.fire("Registro exitoso");
         navigate("/");
       }
-    } catch (e) {
-      console.log(e.toJSON());
+    } catch (error) {
+      console.log(error);
+      if (
+        error.response.data.error ===
+        "Ya existe un usuario con ese correo electronico"
+      )
+        Modal.fire(error.response.data.error);
     }
   }
 
@@ -85,6 +92,7 @@ export default function CreatePatient() {
           className="w-full font-poppins text-sm bg-white flex flex-col rounded-lg p-10 lg:w-1/2 text-[#292F53]"
           onSubmit={(e) => handleSubmit(e)}
         >
+          <h1 className="text-center text-3xl mb-5">Registro Paciente</h1>
           <label>Nombre:</label>
           <input
             type="text"
@@ -117,8 +125,7 @@ export default function CreatePatient() {
             imgUrl={input.image}
             className="flex flex-col-reverse gap-3 mt-3 items-center text-xs xl:flex-row p-4 shadow-md border rounded-lg my-2"
           />
-          <div className="h-3 text-xs font-poppins text-red-600 text-end">
-          </div>
+          <div className="h-3 text-xs font-poppins text-red-600 text-end"></div>
 
           <label>Email:</label>
           <input

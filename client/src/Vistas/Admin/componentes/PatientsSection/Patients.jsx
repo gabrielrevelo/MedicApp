@@ -17,11 +17,13 @@ const Patients = () => {
   const dispatch = useDispatch();
   const { patients, detailPatient } = useSelector((state) => state.generalPatients);
   const [status, setStatus] = useState(false);
-  const [form, setForm] = useState({
+
+  const initialState = {
     edit: false,
     create: false,
     detail: false
-  });
+  }
+  const [form, setForm] = useState(initialState);
   /**
    *  @changeStatus = Método para (dispatch) que cambia el estado del paciente (Activo o Inactivo)
    *  @param => el id del Paciente
@@ -64,9 +66,8 @@ const Patients = () => {
    *  @return => re-render de todos los pacientes y cambia el state edit
    * */
   const reRenderPatients = ()=> {
-    dispatch(getPatients());
     dispatch(getPatient());
-    setForm({create:false, edit:false, detail: false});
+    setForm(initialState);
   }
  
   /**
@@ -77,7 +78,7 @@ const Patients = () => {
     return () => {
       setStatus(false);
     }
-  }, [dispatch, form, status]);
+  }, [dispatch, form, status, patients]);
 
   return (
     <>

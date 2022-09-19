@@ -20,6 +20,7 @@ const ListDoctors = () => {
     <h2 className={styles.TitleCards}>Médicos <b>Top</b></h2>
     <section className={styles.ContainerCards}>
       {topDoctors && topDoctors?.map((doctor) => {
+        const splitAddress = doctor.address.split(",");
         return(
           <TopDoctors
           key = {doctor._id} 
@@ -28,7 +29,7 @@ const ListDoctors = () => {
           specialities = {doctor.specialities}
           rating = {doctor.rating}
           schedule = {doctor.schedule.hour}
-          address = {doctor.address}
+          address = {splitAddress.slice(0, splitAddress.length-2).join(",")}
           image = {doctor.image}
           />
         )

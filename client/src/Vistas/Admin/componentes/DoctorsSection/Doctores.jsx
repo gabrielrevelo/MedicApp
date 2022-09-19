@@ -18,11 +18,13 @@ const Doctores = () => {
   const dispatch = useDispatch();
   const { doctors, detailDoctor } = useSelector((state) => state.generalDoctors);
   const [status, setStatus] = useState(false);
-  const [form, setForm] = useState({
+  const initialState = {
     edit: false,
     create: false,
     detail: false
-  });
+  }
+  const [form, setForm] = useState(initialState);
+
   /**
    *  @changeStatus = Método para (dispatch) que cambia el estado del paciente (Activo o Inactivo)
    *  @param => el id del Paciente
@@ -52,7 +54,7 @@ const Doctores = () => {
   };
 
   /**
-   *  @doctorDetail = Método para (dispatch) que edita al doctor
+   *  @doctorDetail = Método para (dispatch) que muestra detalles del doctor
    *  @param => el id del Doctor
    *  @return => no retorna nada
    * */ 
@@ -66,20 +68,19 @@ const Doctores = () => {
    *  @return => re-render de todos los pacientes y cambia el state edit
    * */
   const reRenderDoctors = ()=> {
-    dispatch(getDoctors());
     dispatch(getDoctor());
-    setForm({create:false, edit:false, detail: false});
+    setForm(initialState);
   }
  
   /**
-   *  @useEffect => todos los pacientes
+   *  @useEffect => todos los doctores
    * */ 
   useEffect(() => {
     dispatch(getDoctors());
     return () => {
       setStatus(false);
     }
-  }, [dispatch, form, status]);
+  }, [dispatch, form, status, doctors]);
 
   return (
     <>

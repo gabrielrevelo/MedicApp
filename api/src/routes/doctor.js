@@ -3,6 +3,7 @@ var doctorRouter = express.Router();
 const controllerDoctors = require("../controllers/controller.doctor");
 const ValidateToken = require('../middlewares/Authorization');
 const { paramIdDoctorValidator, bodyDoctorValidatorPOST, bodyDoctorValidatorPATCH } = require("../middlewares/validatorDoctor");
+const validateUser = require("../middlewares/userExist") 
 
 /* DOCTORS */
 /* Get All Doctors */
@@ -11,7 +12,7 @@ const { paramIdDoctorValidator, bodyDoctorValidatorPOST, bodyDoctorValidatorPATC
 doctorRouter.get("/", controllerDoctors.getAll);
 // doctorRouter.get("/", controllerDoctors.getAll);
 /* Post Doctor */
-doctorRouter.post("/", bodyDoctorValidatorPOST, controllerDoctors.createDoctor);
+doctorRouter.post("/", validateUser.userExist, bodyDoctorValidatorPOST, controllerDoctors.createDoctor);
 /* Get Doctor by Id */
 doctorRouter.get("/:idDoctor", paramIdDoctorValidator, controllerDoctors.getDoctor);
 /* Update Doctor by Id */

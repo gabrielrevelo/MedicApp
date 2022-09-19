@@ -47,7 +47,7 @@ const EditDoctor = ({id, onClick, name, email, phoneNumber, license, address}) =
       !inputErrors.address 
     ) {
       props.forEach((value) => {
-        if (!input[value] == "") {
+        if (!input[value] === "") {
           values[value] = input[value];
         }
       });
@@ -73,7 +73,7 @@ const EditDoctor = ({id, onClick, name, email, phoneNumber, license, address}) =
   };
 
   return (
-    <form className={styles.Form} onSubmit={(e) => {handleSubmit(e);}}>
+    <section className={styles.Form}>
           <img src={iconClose} alt="alt-close-icon" className={styles.ButtonClose} onClick={onClick}/>
           <h2 className={styles.TitleModal}>Editar Doctor</h2>
           <div className={styles.InputContainer}>
@@ -157,11 +157,11 @@ const EditDoctor = ({id, onClick, name, email, phoneNumber, license, address}) =
             />
           </div>
           
-      <button className={styles.ButtonSubmit} type="submit">
+      <button className={styles.ButtonSubmit} onClick={(e) => handleSubmit(e)}>
         Editar Doctor
       </button>
 
-    </form>
+    </section>
   );
 };
 

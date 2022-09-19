@@ -4,6 +4,8 @@ const Admin = require("../models/Admin");
 const bcrypt = require("bcryptjs");
 const Jwt = require("jsonwebtoken");
 const { OAuth2Client } = require("google-auth-library");
+const mailer = require("../config/sendMails/mailer");
+const jwt_decode = require("jwt-decode");
 
 const controllerAuth = {
   google: async (req, res, next) => {
@@ -111,7 +113,7 @@ const controllerAuth = {
       // console.log(user.payload.email, 'user');
       const patient = await Patient.findOne({ email: user.payload.email });
 
-      if (!patient && rol === "PATIENT") {
+      if (!patient) {
         const newPatient = await Patient.create({
           email: user.payload.email,
           name: user.payload.name,
@@ -150,7 +152,6 @@ const controllerAuth = {
       next(error);
     }
   },
-
   signIn: async (req, res, next) => {
     const { email, password } = req.body;
     if (!email || !password)
@@ -210,16 +211,58 @@ const controllerAuth = {
         return res.status(200).json({ data: data, token: tokenAdmin });
       }
       if (!patient && !doctor && !admin) {
-        return res
-          .status(404)
-          .json({
-            succes: false,
-            error: "Email ó Password Incorrecto paciente",
-          });
+        return res.status(404).json({
+          succes: false,
+          error: "Email ó Password Incorrecto paciente",
+        });
       }
     } catch (error) {
       // res.status(404).json({ succes: false, error: error });
       next(error);
+    }
+  },
+  forgotPassword: async (req, res, next) => {
+    const { email } = req.body;
+    if (!email) return res.status(400).send("Email faltante");
+    const patient = await Patient.findOne({ email: email });
+    const doctor = await Doctor.findOne({ email: email });
+    try {
+      if (!patient && !doctor)
+        return res.status(400).send("Email no registrado");
+      let token;
+      if (patient) {
+        token = Jwt.sign({ user_id: patient.id }, "pacientetoken");
+      }
+      if (doctor) {
+        token = Jwt.sign({ user_id: doctor.id }, "doctortoken");
+      }
+      const link = `http://localhost:3000/changePassword/${token}`;
+      mailer.sendMailForgotPassword(email, link);
+      return res.send("Se ha enviado un correo de recuperacion a " + email)
+    } catch (error) {
+      return res.status(500).send(error);
+    }
+    //Enviar correo con el link
+  },
+  changePassword: async (req, res, next) => {
+    const { password, token } = req.body;
+    const id = jwt_decode(token).user_id;
+    try {
+      const patient = await Patient.findOne({ _id: id });
+      const doctor = await Doctor.findOne({ _id: id });
+      if (patient) {
+        const hashedPassword = await bcrypt.hashSync(password, 10);
+        patient.password = hashedPassword;
+        patient.save();
+      }
+      if (doctor) {
+        const hashedPassword = await bcrypt.hashSync(password, 10);
+        doctor.password = hashedPassword;
+        doctor.save();
+      }
+      return res.send("Contraseña cambiada")
+    } catch (error) {
+      return res.status(500).send(error);
     }
   },
 };

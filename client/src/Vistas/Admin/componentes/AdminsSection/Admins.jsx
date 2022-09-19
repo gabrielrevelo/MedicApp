@@ -17,11 +17,13 @@ const Admins = () => {
   const dispatch = useDispatch();
   const { admins, detailAdmin } = useSelector((state) => state.generalAdmins);
   const [status, setStatus] = useState(false);
-  const [form, setForm] = useState({
+
+  const initialState = {
     edit: false,
     create: false,
     detail: false
-  });
+  }
+  const [form, setForm] = useState(initialState);
   /**
    *  @changeStatus = Método para (dispatch) que cambia el estado del admin (Activo o Inactivo)
    *  @param => el id del Paciente
@@ -64,9 +66,8 @@ const Admins = () => {
    *  @return => re-render de todos los admins y cambia el state
    * */
   const reRenderAdmins = ()=> {
-    dispatch(getAdmins());
     dispatch(getAdmin());
-    setForm({create:false, edit:false, detail: false});
+    setForm(initialState);
   }
  
   /**
@@ -77,7 +78,7 @@ const Admins = () => {
     return () => {
       setStatus(false);
     }
-  }, [dispatch, form, status]);
+  }, [dispatch, form, status, admins]);
 
   return (
     <>

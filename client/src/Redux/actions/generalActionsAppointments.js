@@ -21,6 +21,7 @@ export const getAppointment = (idAppointment) => async (dispatch) => {
 export const getAppointments = () => async (dispatch) => {
   try {
     const appointments = await axios.get("/appointments");
+    console.log(appointments);
     return dispatch(getAllAppointments(appointments.data.data));
   } catch (error) {
     console.log(error);

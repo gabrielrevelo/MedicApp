@@ -35,8 +35,8 @@ export default function Google({ login, className}) {
     );
     window.sessionStorage.setItem("isAuth", true);
     if(!respuesta.data.data.isActive){
-      localStorage.setItem("auth-token",JSON.stringify(""));
-      localStorage.setItem("User", JSON.stringify(""));
+      sessionStorage.clear();
+      localStorage.clear();
       Swal.fire("Esta cuenta ha sido temporalmente baneada. Por favor comunicate con el adminisrtador o ingresa con otra cuenta")
       return  navigate("/")
   }else{

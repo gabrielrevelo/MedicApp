@@ -3,6 +3,7 @@ const patientRouter = express.Router();
 const controllerPatients = require("../controllers/controller.patient");
 const ValidateToken = require('../middlewares/Authorization');
 const { paramIdPatientValidator, bodyPatientValidatorPOST, bodyPatientValidatorPATCH, bodyPatientValidatorFAVORITES } = require("../middlewares/validatorPatient.js");
+const validateUser = require("../middlewares/userExist")
 
 /* PATIENTS */
 /* Get All Patients  */ 
@@ -13,7 +14,7 @@ patientRouter.get("/", controllerPatients.getAll);
 patientRouter.get("/profile", [ValidateToken.Patient], controllerPatients.getPatientToken);
 
 /* Post Patient */
-patientRouter.post("/", bodyPatientValidatorPOST , controllerPatients.createPatient);
+patientRouter.post("/", validateUser.userExist, bodyPatientValidatorPOST , controllerPatients.createPatient);
 
 /* Get Patient by Id */
 patientRouter.get("/:idPatient", paramIdPatientValidator, controllerPatients.getPatient);

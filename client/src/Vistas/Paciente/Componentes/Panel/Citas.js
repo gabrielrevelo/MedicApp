@@ -32,13 +32,13 @@ const Citas = ({Resenas}) => {
                     <>
 
                     <div className='m-2 bg-white rounded'>
-                        <span className="text-[#292F53] text-lg font-poppins  mt-3 mb-4">{cita.date.split('T')[0] > hoy2 &&  
+                        <span className="text-[#292F53] ml-2 text-lg font-poppins  mt-3 mb-4">{cita.date.split('T')[0] > hoy2 &&  
                         <span>Fecha: </span>}</span>
-                        <span className="text-[#292F53] text-lg font-raleway  mt-3 mb-4">{cita.date.split('T')[0] > hoy2 &&  cita.date.split('T')[0]}</span>
+                        <span className="text-[#292F53] ml-2 text-lg font-raleway  mt-3 mb-4">{cita.date.split('T')[0] > hoy2 &&  cita.date.split('T')[0]}</span>
                         <p></p>
-                        <span className="text-[#292F53] text-lg font-poppins  mt-3 mb-4">{cita.date.split('T')[0] > hoy2 &&  
+                        <span className="text-[#292F53] ml-2 text-lg font-poppins  mt-3 mb-4">{cita.date.split('T')[0] > hoy2 &&  
                         <span>Hora: </span>}</span>
-                        <span  className="text-[#292F53] text-lg font-raleway  mt-3 mb-4">{cita.date.split('T')[0] > hoy2 && cita.hour}</span>
+                        <span  className="text-[#292F53] ml-2 text-lg font-raleway  mt-3 mb-4">{cita.date.split('T')[0] > hoy2 && cita.hour}</span>
                     <p></p>
                     </div>
 
@@ -51,13 +51,13 @@ const Citas = ({Resenas}) => {
                 return (
                     <>
                     <div className='m-2 bg-white rounded'>
-                        <span className="text-[#292F53] text-lg font-poppins  mt-3 mb-4">{cita.date.split('T')[0] < hoy2 &&  
+                        <span className="text-[#292F53] ml-2 text-lg font-poppins  mt-3 mb-4">{cita.date.split('T')[0] < hoy2 &&  
                         <span>Fecha: </span>}</span>
-                        <span className="text-[#292F53] text-lg font-raleway  mt-3 mb-4">{cita.date.split('T')[0] < hoy2 &&  cita.date.split('T')[0]}</span>
+                        <span className="text-[#292F53] ml-2 text-lg font-raleway  mt-3 mb-4">{cita.date.split('T')[0] < hoy2 &&  cita.date.split('T')[0]}</span>
                         <p></p>
                         <span>{cita.date.split('T')[0] < hoy2 &&  
-                        <span className="text-[#292F53] text-lg font-poppins  mt-3 mb-4">Hora: </span>}</span>
-                        <span className="text-[#292F53] text-lg font-raleway  mt-3 mb-4">{cita.date.split('T')[0] < hoy2 && cita.hour}</span>
+                        <span className="text-[#292F53] ml-2 text-lg font-poppins  mt-3 mb-4">Hora: </span>}</span>
+                        <span className="text-[#292F53] ml-2 text-lg font-raleway  mt-3 mb-4">{cita.date.split('T')[0] < hoy2 && cita.hour}</span>
 
                         <div>
                             {cita.date.split('T')[0] < hoy2 && cita.comment.length < 10 &&

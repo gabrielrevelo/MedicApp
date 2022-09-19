@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../../../Compartido/Componentes/Header/NavBar";
 import InputImage from "../../../Compartido/Componentes/InputImage/InputImage";
+import Modal from "../../../Compartido/Componentes/SwalStyled/index"
 
 export default function Registro() {
   const navigate = useNavigate();
@@ -55,7 +56,6 @@ export default function Registro() {
     if (Number(input.hour[0].substr(0, 2)) > Number(input.hour[1].substr(0, 2)))
       errors.hour = "Horario invalido";
     if (!input.checkUpPrice) errors.checkUpPrice = "Ingrese una Tarifa";
-    if (!input.lastName) errors.lastName = "Ingrese un apellido";
     if (!input.password) errors.password = "Debe ingresar una contraseña";
     if (!input.password) errors.password = "Ingrese una contraseña.";
     if (!input.specialities)
@@ -103,7 +103,7 @@ export default function Registro() {
         city: input.city,
         specialities: input.specialities,
         license: input.license,
-        address: input.address,
+        address: `${input.address},${input.city} ${input.country}`,
         email: input.email,
         password: input.password,
         phoneNumber: input.phoneNumber,
@@ -112,11 +112,17 @@ export default function Registro() {
         image: input.image,
       });
       if (res.status === 201) {
-        alert("Usted se a registrado");
+        Modal.fire("Usted se a registrado");
         navigate("/");
       }
-    } catch (e) {
-      console.log(e.toJSON());
+    } catch (error) {
+      console.log(error);
+
+      if (
+        error.response.data.error ===
+        "Ya existe un usuario con ese correo electronico"
+      )
+        Modal.fire(error.response.data.error)
     }
   }
 
@@ -138,7 +144,7 @@ export default function Registro() {
     setInputErrors(
       validar({
         ...input,
-        hour
+        hour,
       })
     );
   }
@@ -155,6 +161,7 @@ export default function Registro() {
           className="w-full font-poppins text-sm bg-white flex flex-col rounded-lg p-10 lg:w-1/2 text-[#292F53]"
           onSubmit={(e) => handleSubmit(e)}
         >
+          <h1 className="text-center text-3xl mb-5">Registro Doctor</h1>
           <label>Nombre:</label>
           <input
             type="text"

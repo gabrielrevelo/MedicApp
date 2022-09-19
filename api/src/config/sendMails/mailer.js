@@ -5,6 +5,7 @@ const nodemailerSendGrid = require("nodemailer-sendgrid");
 /* Mail Templates */
 const confirmationRegisterTemplate = require("./ConfirmationRegister");
 const confirmationAppointmentTemplate = require("./ConfirmationAppointment");
+const forgotPasswordTemplate = require("./ForgotPassword");
 
 /* Models for Appointment */
 const Patient = require("../../models/Patient");
@@ -69,6 +70,19 @@ const sendMailAppointment = async(data) => {
   return;
 };
 
+const sendMailForgotPassword = async(email, link) => {
+  console.log(link)
+  const transporter = createTransport();
+  await transporter.sendMail({
+    from: '"MedicApp " <medic.app.mails@gmail.com>',
+    to: `${email}`,
+    subject: "Restablecer Contraseña | MedicApp",
+    html: forgotPasswordTemplate(link)
+  });
+  return;
+};
+
 
 exports.sendMailRegister = (user , type) => sendMailRegister(user , type);
 exports.sendMailAppointment = (data) => sendMailAppointment(data);
+exports.sendMailForgotPassword = (email, link) => sendMailForgotPassword(email, link);
