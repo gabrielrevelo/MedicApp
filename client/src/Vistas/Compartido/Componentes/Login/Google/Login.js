@@ -29,13 +29,13 @@ export default function Google({ login, className}) {
    console.log(respuesta.data,"isActive en google");
     localStorage.setItem("auth-token", JSON.stringify(respuesta.data.token));
     localStorage.setItem("User", JSON.stringify(respuesta.data.data));
-    window.sessionStorage.setItem(
+    window.localStorage.setItem(
       "Rol",
       JSON.stringify(respuesta.data.data.rol)
     );
-    window.sessionStorage.setItem("isAuth", true);
+    window.localStorage.setItem("isAuth", true);
     if(!respuesta.data.data.isActive){
-      sessionStorage.clear();
+      localStorage.clear();
       localStorage.clear();
       Swal.fire("Esta cuenta ha sido temporalmente baneada. Por favor comunicate con el adminisrtador o ingresa con otra cuenta")
       return  navigate("/")

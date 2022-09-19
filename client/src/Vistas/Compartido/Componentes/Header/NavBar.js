@@ -7,7 +7,7 @@ import { LOGOUT_ADMIN, LOGOUT_DOCTOR, LOGOUT_PATIENT } from "../../../../context
 export default function NavBar ({avaliable}){
 
     const imagen = Logo
-    const session = window.sessionStorage.getItem('session')
+    const session = window.localStorage.getItem('session')
     const user = JSON.parse(window.localStorage.getItem('User'))
     
 

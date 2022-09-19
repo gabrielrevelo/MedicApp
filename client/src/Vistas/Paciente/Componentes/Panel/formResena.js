@@ -30,7 +30,7 @@ const FormResena = ({idCita}) => {
 
     async function  handleSubmit(e) {
         e.preventDefault()
-        await axios.patch(`http://localhost:3004/appointments/addreview/${idCita}`,input)
+        await axios.patch(`/appointments/addreview/${idCita}`,input)
         swal({
             title: "Reseña Creada!",
             icon: "success"

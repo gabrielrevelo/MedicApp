@@ -69,7 +69,7 @@ export const postPatient = (data) => async (dispatch) => {
 
 export const getPatientToken = () => async (dispatch) => {
   try {
-    const patientById = await axios('http://localhost:3004/patients/profile',{
+    const patientById = await axios('/patients/profile',{
       headers: { Authorization : `Bearer ${JSON.parse(window.localStorage.getItem('auth-token'))}`}
     });
     console.log(patientById.data);

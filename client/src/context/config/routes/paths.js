@@ -21,7 +21,7 @@ export const PROFILE_DOCTOR = '/doctor'
 export const HOME_DOCTOR = '/doctor/home'
 export const DOCTORS_DOCTOR = '/doctor/doctors'
 // export const BUY_APPOINTMENT_DOCTOR = '/doctor/buy/doctor/:id'
-export const DOCTORS_ID_DOCTOR = '/doctor/doctors/:id'
+export const DOCTORS_ID_DOCTOR = '/doctor/doctors/:idDoctor'
 export const LOGOUT_DOCTOR = '/doctor/logout'
 
 export const PROFILE_PATIENT = '/patient'
@@ -32,3 +32,5 @@ export const BUY_APPOINTMENT_PATIENT = '/patient/buy/doctor/:idDoctor'
 export const LOGOUT_PATIENT = '/patient/logout'
 
 // /patient/buy/doctor/undefined
+
+export const ABOUT_US = '/about'

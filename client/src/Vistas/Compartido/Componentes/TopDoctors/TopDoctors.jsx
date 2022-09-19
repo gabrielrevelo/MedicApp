@@ -8,7 +8,7 @@ import iconStar from "../../imagenes compartidas/icon-star.png";
 
 const TopDoctors = ({id, name, specialities, rating, schedule, address, image, price,  details}) => {
 
-  const rol = JSON.parse(sessionStorage.getItem('Rol'));
+  const rol = JSON.parse(localStorage.getItem('Rol'));
 
   return (
     <>

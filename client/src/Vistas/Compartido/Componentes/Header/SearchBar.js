@@ -55,7 +55,7 @@ export default function SearchBar({type}) {
     sessionStorage.setItem('actualSearch', JSON.stringify(selects));
   };
 
-  const rol = JSON.parse(sessionStorage.getItem('Rol'));
+  const rol = JSON.parse(localStorage.getItem('Rol'));
 
 
   return (
@@ -112,7 +112,7 @@ export default function SearchBar({type}) {
             class="flex items-center justify-center gap-2 font-poppins text-sm font-medium text-white bg-[#292F53] rounded-lg py-4 px-8 hover:bg-[#1479FF]"
             onClick={() => {
               handlerSearchButton();
-            setTimeout( rol === 'ADMIN'? navigate("/admin/doctors", 1000) : rol === 'DOCTOR'? navigate("/admin/doctors", 1000) : rol === 'PATIENT'? navigate("/patient/doctors", 1000) :  navigate("/doctors", 1000));
+            setTimeout( rol === 'ADMIN'? navigate("/admin/doctors", 1000) : rol === 'DOCTOR'? navigate("/doctor/doctors", 1000) : rol === 'PATIENT'? navigate("/patient/doctors", 1000) :  navigate("/doctors", 1000));
             }}
           >
             <img src={iconSearch} alt="icon-search-button" className="w-6"/>

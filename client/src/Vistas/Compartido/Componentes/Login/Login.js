@@ -62,11 +62,11 @@ export default function Login(email, password) {
       console.log(response.data.data.isActive, "response en login");
       localStorage.setItem("auth-token", JSON.stringify(response.data.token));
       localStorage.setItem("User", JSON.stringify(response.data.data));
-      window.sessionStorage.setItem(
+      window.localStorage.setItem(
         "Rol",
         JSON.stringify(response.data.data.rol)
       );
-      window.sessionStorage.setItem("isAuth", true);
+      window.localStorage.setItem("isAuth", true);
 
       setInput({
         email: "",
