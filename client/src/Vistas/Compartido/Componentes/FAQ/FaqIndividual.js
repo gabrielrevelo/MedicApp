@@ -10,7 +10,7 @@ const FaqIndividual = ({ title, info, img}) => {
         </button>
         <h4 className='text-[#1479FF] font-poppins ml-2'>{title}</h4>
       </header>
-      <div className='flex flex-row justify-between '>
+      <div className='flex lg:flex-row justify-between flex-col items-center'>
       {showInfo &&
         <>
         <p className='ml-6 -mt-2 mb-4 font-raleway flex flex-wrap'>{info}</p>

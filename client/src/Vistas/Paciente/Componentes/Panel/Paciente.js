@@ -3,10 +3,11 @@ import { BsPeopleFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPatients, getPatientToken } from '../../../../Redux/actions/generalActionsPatients';
 
-import InfoData from '../../../Doctor/Componentes/Panel/componentes/InfoData';
+import InfoData from './infoData';
 import Citas from './Citas';
 import NavBar from './NavBar';
 import TopBar from './topBar';
+import Favoritos from './Favoritos';
 
 
 
@@ -39,7 +40,7 @@ export default function Paciente() {
     <div className="flex justify-evenly">
     <NavBar setSection={setSection} />
         <div className= "flex flex-col px-10 py-5 gap-5 w-11/12">
-        <TopBar imgProfile={filtroPaciente[0]?.image} />
+        <TopBar imgProfile={filtroPaciente[0]?.image} setSection={setSection} />
         <div className=" rounded  h-fit mb-5 flex flex-row items-end justify-end mt-5 mr-5">
             <InfoData 
                     className={'w-48  bg-indigo-300  h-24 rounded m-3 flex flex-col justify-around'}
@@ -58,6 +59,7 @@ export default function Paciente() {
             </>
             : null}
             {section === "citas" ? <Citas /> : null}
+            {section === "favoritos" ? <Favoritos /> : null}
         </div>
         </div>
     </div>
