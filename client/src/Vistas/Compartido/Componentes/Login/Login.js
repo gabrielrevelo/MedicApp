@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { useAuthContext } from "../../../../context/authContext";
 import Google from "./Google/Login";
 import Select from "react-select";
+import icon from "../Footer/iconimg/logo-dark.png"
 
 const Validate = (input) => {
   let errors = {};
@@ -165,12 +166,12 @@ export default function Login(email, password) {
             style={{ backgroundImage: `url(${imgLogin})` }}
           >
             <div className="absolute bg-blue-400 opacity-10 inset-0  -z-1" />
-            <div className="w-full px-20   opacity-60 ">
+            <div className="w-full px-20   ">
               <h1 className="text-6xl font-bold text-left text-zinc-500 tracking-wide">
-                MediApp
+               <img className="h-[300px] mt-[-250px]" src={icon}/>
               </h1>
-              <p className="text-3xl my-3 text-zinc-500 -mx-6 m-2 -top-8 ">
-                Cuidamos tu Salud y La De Tu Familia
+              <p className="text-3xl my-3 opacity-70 text-zinc-700-mx-6 m-2 -top-8 ">
+                Cuidamos tu salud <br/>y la de tu familia
               </p>
             </div>
           </div>

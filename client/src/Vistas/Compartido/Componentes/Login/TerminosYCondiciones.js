@@ -1,13 +1,13 @@
 import {Link} from "react-router-dom"
+import NavBar from "../Header/NavBar"
+
 export default function TerminosYCondiciones() {
   return (
+        <div>
+        <div className="h-[100px]  bg-[#292F53] p-4">
+        <NavBar/>
+        </div>
       <div className="flex mt-5 align-middle justify-center">
-        <Link
-          className="font-poppins  bg-blue-500 max-h-7 text-center  m-[20px] p-1 text-white mr-[50px] w-[100px] rounded-md"
-          to="/login"
-        >
-          Volver
-        </Link>
       <div className="w-[80%] flex flex-col justify-center text-center align-middle bg-white ">
         <label className="text-[30px]">TÉRMINOS Y CONDICIONES</label>
         <p className="text-slate-800 p-5 font-serif justify-center text-justify">
@@ -711,6 +711,7 @@ export default function TerminosYCondiciones() {
         </p>
       </div>
       
+    </div>
     </div>
   );
 }
