@@ -5,6 +5,7 @@ import { getPatients, getPatientToken } from '../../../../Redux/actions/generalA
 
 import InfoData from './infoData';
 import Citas from './Citas';
+import Favoritos from './Favoritos';
 import NavBar from './NavBar';
 import TopBar from './topBar';
 import Favoritos from './Favoritos';

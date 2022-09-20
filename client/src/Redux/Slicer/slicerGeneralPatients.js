@@ -6,7 +6,8 @@ export const generalPatientsSlice = createSlice({
     patients: [],
     detailPatient: {},
     querySearch:[],
-    profile:{}
+    profile:{},
+    favoritos:[],
   },
   reducers: {
     getAllPatients: (state, action) => {
@@ -36,6 +37,12 @@ export const generalPatientsSlice = createSlice({
     postPatient: (state) => {
       return state;
     },
+    getfavoritos : (state, action) => {
+      state.favoritos = action.payload
+    },
+    clear: (state, action) =>{
+      state.favoritos = []
+    }
   },
 });
 
@@ -46,7 +53,9 @@ export const {
   editPatient,
   postPatient,
   getPatientsByDates,
-  getPatientProfile
+  getPatientProfile,
+  getfavoritos,
+  clear
 } = generalPatientsSlice.actions;
 
 export default generalPatientsSlice.reducer;

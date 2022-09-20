@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState} from 'react';
 import { getDocbyId } from '../../../../Redux/actions/doctorActions';
