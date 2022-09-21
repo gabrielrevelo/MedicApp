@@ -6,7 +6,7 @@ import Icon1 from "../../imagenes compartidas/icon1.png";
 
 export default function Banner(){
 return(
-    <section className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 text-[#F1F2F6]'>
+    <section className='font-raleway grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 text-[#F1F2F6]'>
         <div className='text-center bg-blue-500 text-medium p-10'>
 {/*         <h2 className="flex justify-center"><HiOutlineClipboardList/></h2> */}
         <h3 className='font-bold flex justify-center items-center gap-3 pb-4 text-lg'> <img src={Icon1} alt="icon-services" className="w-11"/>Encuentra tu Especialista</h3>

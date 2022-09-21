@@ -1,20 +1,29 @@
 const Appointment = require("../models/Appointment");
+const Doctor = require("../models/Doctor");
 const mailer = require("../config/sendMails/mailer");
 
 const controllerAppointments = {
   getAll: async (req, res, next) => {
     try {
       const appointments = await Appointment.find()
-      .populate({
-        path: 'patient',
-        model: 'Patient',
-        select: ['name', 'email']
-      })
-      .populate({
-        path: 'doctor',
-        model: 'Doctor',
-        select: ['name', 'email', 'specialities', 'address', 'city', 'schedule', 'checkUpPrice']
-      });
+        .populate({
+          path: "patient",
+          model: "Patient",
+          select: ["name", "email"],
+        })
+        .populate({
+          path: "doctor",
+          model: "Doctor",
+          select: [
+            "name",
+            "email",
+            "specialities",
+            "address",
+            "city",
+            "schedule",
+            "checkUpPrice",
+          ],
+        });
       if (!appointments) {
         throwError(1401);
       }
@@ -22,13 +31,19 @@ const controllerAppointments = {
     } catch (error) {
       return res.status(error.code || 500).send({ errors: error.message });
     }
-  }, 
+  },
   createAppointment: async (req, res, next) => {
     const { date, hour, paymentProcessed, doctor, patient } = req.body;
     try {
-      const newAppointment = new Appointment({ doctor, patient, date, hour, paymentProcessed });
+      const newAppointment = new Appointment({
+        doctor,
+        patient,
+        date,
+        hour,
+        paymentProcessed,
+      });
       await newAppointment.save();
-      mailer.sendMailAppointment(newAppointment); //Enviamos el mail de Confirmación de Cita al Paciente y Doctor. 
+      mailer.sendMailAppointment(newAppointment); //Enviamos el mail de Confirmación de Cita al Paciente y Doctor.
       return res.status(201).send({ newAppointment: newAppointment });
     } catch (error) {
       return res.status(error.code || 500).send({ errors: error.message });
@@ -38,16 +53,24 @@ const controllerAppointments = {
     const { idAppointment } = req.params;
     try {
       const appointmentById = await Appointment.findById(idAppointment)
-      .populate({
-        path: 'patient',
-        model: 'Patient',
-        select: ['name', 'email']
-      })
-      .populate({
-        path: 'doctor',
-        model: 'Doctor',
-        select: ['name', 'email', 'specialities', 'address', 'city', 'schedule', 'checkUpPrice']
-      });
+        .populate({
+          path: "patient",
+          model: "Patient",
+          select: ["name", "email"],
+        })
+        .populate({
+          path: "doctor",
+          model: "Doctor",
+          select: [
+            "name",
+            "email",
+            "specialities",
+            "address",
+            "city",
+            "schedule",
+            "checkUpPrice",
+          ],
+        });
       if (!appointmentById) {
         throwError(1402);
       }
@@ -61,7 +84,7 @@ const controllerAppointments = {
   },
   updateAppointment: async (req, res, next) => {
     const { idAppointment } = req.params;
-    const requestChanges = req.body; 
+    const requestChanges = req.body;
     try {
       const appointmentForUpdate = await Appointment.findById(idAppointment);
       if (!appointmentForUpdate) {
@@ -114,17 +137,28 @@ const controllerAppointments = {
     }
   },
   addReview: async (req, res, next) => {
-  // console.log(req.params.id);
+    // console.log(req.params.id);
     try {
-      const appointmentR = await Appointment.updateOne({
-      _id: req.params.id}, 
-      {$set: {score:req.body.score, comment: req.body.comment}
-    })
-    res.status(200).send({ data: appointmentR });
-  } catch (error) {
-    return res.status(error.code || 500).send({ errors: error.message });
-  }
-},
+      const appointmentR = await Appointment.updateOne(
+        {
+          _id: req.params.id,
+        },
+        { $set: { score: req.body.score, comment: req.body.comment } }
+      );
+      const findAppointment = await Appointment.findOne({ _id: req.params.id });
+      const doctorAppointments = await Appointment.find({
+        doctor: findAppointment.doctor,
+      });
+      const mapReviews = doctorAppointments.map((review) => review.score);
+      const totalReviews = mapReviews.reduce((acc, score) => acc + score, 0);
+      await Doctor.updateOne({ _id: findAppointment.doctor },
+        { $set: { rating: (totalReviews / mapReviews.length).toFixed(1) } }
+      );
+      res.status(200).send({ data: appointmentR });
+    } catch (error) {
+      return res.status(error.code || 500).send({ errors: error.message });
+    }
+  },
 
   deleteAppointment: async (req, res, next) => {
     const { idAppointment } = req.params;
