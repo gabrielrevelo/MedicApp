@@ -16,6 +16,8 @@ export default function PanelDoctor() {
   console.log(doctor?.active, "doctor");
   const citaTotal = doctor?.appointments.length;
   const valorCita = doctor?.doctor.checkUpPrice * citaTotal;
+  const pacientesTotales = new Set()
+  doctor?.appointments.map(e => pacientesTotales.add(e.patient.name))
 
   useEffect(() => {
     dispatch(getProfileDoc());
@@ -34,15 +36,15 @@ export default function PanelDoctor() {
             >
               <InfoData
                 className={
-                  "w-80 h-24 bg-indigo-300 rounded-2xl flex flex-col justify-around p-5"
+                  "w-80 h-24 bg-[#44BA54] rounded-2xl flex justify-between p-5"
                 }
                 text="Pacientes totales"
                 icon={<BsPeopleFill />}
-                dato="4"
+                dato={pacientesTotales.size}
               />
               <InfoData
                 className={
-                  "w-80 h-24 bg-green-300 h-24 rounded-2xl flex flex-col justify-around p-5"
+                  "w-80 h-24 bg-[#5C4FB7] h-24 rounded-2xl justify-between flex p-5"
                 }
                 text="Citas totales"
                 icon={<BsFillCalendar2CheckFill />}
@@ -50,19 +52,11 @@ export default function PanelDoctor() {
               />
               <InfoData
                 className={
-                  "w-80 h-24 bg-blue-200 h-24 rounded-2xl flex flex-col justify-around p-5"
+                  "w-80 h-24 bg-[#1479FF] h-24 rounded-2xl justify-between flex p-5"
                 }
                 text="Dinero Total"
                 icon={<BsCurrencyExchange />}
-                dato={Math.round(valorCita)}
-              />
-              <InfoData
-                className={
-                  "w-80 h-24 bg-orange-300 h-24 rounded-2xl flex flex-col justify-around p-5"
-                }
-                text="Resenas"
-                icon={<BsChatRightQuoteFill />}
-                dato="0"
+                dato={"$" + Math.round(valorCita)}
               />
             </div>
           ) : null}

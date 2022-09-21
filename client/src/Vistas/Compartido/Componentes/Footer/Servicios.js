@@ -1,29 +1,23 @@
 import { Link } from "react-router-dom";
-import icon from "./iconimg/ico-dark.png"
-
+import icon from "./iconimg/ico-dark.png";
+import NavBar from "../Header/NavBar";
 
 export default function Servicios() {
   return (
     <div className="">
-      <div className="h-[100px] bg-indigo-100 p-4">
-        <Link
-          className=""
-          to="/"
-        >
-          <img class="h-[60px] ml-[50px]" src={icon}/>
-        </Link>
+        <NavBar />
+      <div className="h-[100px]  bg-[#292F53] p-4">
       </div>
       <div className="flex flex-col justify-center align-middle text-center">
         <br />
-        <label className="text-[30px] font-poppins">Servicios</label>
+        <label className="text-[#292F53] font-bold text-[45px]">Servicios</label>
         <br />
-        <div className="flex-col p-6 text-[30px] font-poppins text-center align-middle border-gray-400 rounded border-[1px] bg-blue-500 text-cyan-500 justify-center w-[90%] self-center">
-          MedicApp te provee servicios medicos
-           de las siguientes ramas.
+        <div className="flex-col p-6 text-[30px] font-poppins text-center align-middle border-gray-300 rounded border-[1px]  bg-[#292F53]  justify-center w-[90%] self-center">
+          <h2 className="text-[#1479FF] font-bold text-[35px]">MedicApp te provee servicios medicos de las siguientes ramas.</h2>
           <br />
           <br />
           <div className="text-[#292F53] text-xl font-poppins mb-5 ">
-            <label className="text-gray-500">Ecografía</label>
+            <label className="text-blue-500  font-bold text-[25px]">Ecografía</label>
 
             <div className="flex flex-row text-left m-5 text-blue-500  ">
               <p className="text-justify text-white  text-[15px]">
@@ -52,10 +46,10 @@ export default function Servicios() {
                 lo general, tarda una media hora.
               </p>
             </div>
-            <label className="text-gray-500">Cardiología</label>
+            <label className="text-blue-500  font-bold text-[25px]">Cardiología</label>
 
             <div className="flex flex-row text-left m-5 text-blue-500  ">
-              <p className="text-justify text-white  text-[15px]">
+              <p className="text-justify  text-white text-[15px]">
                 {" "}
                 El Servicio de Cardiología Clínica ambulatoria brinda
                 diagnóstico y tratamiento para todo el espectro de enfermedades
@@ -82,10 +76,10 @@ export default function Servicios() {
                 tumores cardíacos.
               </p>
             </div>
-            <label className="text-gray-500">Ginecología</label>
+            <label className="text-blue-500  font-bold text-[25px]">Ginecología</label>
 
             <div className="flex flex-row text-left m-5 text-blue-500  ">
-              <p className="text-justify text-white text-[15px]">
+            <p className="text-justify  text-white text-[15px]">
                 {" "}
                 La ginecología es una especialidad de la medicina que se centra
                 en el estudio del sistema reproductor femenino. Los
@@ -99,10 +93,10 @@ export default function Servicios() {
                 funcionamiento de sus órganos reproductivos.
               </p>
             </div>
-            <label className="text-gray-500">Dermatología</label>
+            <label className="text-blue-500  font-bold text-[25px]">Dermatología</label>
 
             <div className="flex flex-row text-left m-5 text-blue-500  ">
-              <p className="text-justify text-white text-[15px]">
+            <p className="text-justify  text-white  text-[15px]">
                 Dermatología Información del Servicio | Equipo de Salud |
                 Prestaciones Presentación El área de Dermatologia brinda
                 atención a adultos mayores de 16 años con enfermedades en piel,
@@ -122,10 +116,10 @@ export default function Servicios() {
                 especialidad.
               </p>
             </div>
-            <label className="text-gray-500">Gastroenterología</label>
+            <label className="text-[#292F53] font-bold text-[25px]">Gastroenterología</label>
 
             <div className="flex flex-row text-left m-5 text-blue-500  ">
-              <p className="text-justify text-white  text-[15px]">
+            <p className="text-justify  text-white  text-[15px]">
                 El Servicio de Gastroenterología y Endoscopia Digestiva es un
                 equipo integrado por especialistas con una amplia preparación
                 profesional y científica que desarrolla sus actividades en
@@ -138,10 +132,10 @@ export default function Servicios() {
                 en cuenta las características de cada paciente.
               </p>
             </div>
-            <label className="text-gray-500">Medicina General</label>
+            <label className="text-blue-500  font-bold text-[25px]">Medicina General</label>
 
             <div className="flex flex-row text-left m-5 text-blue-500  ">
-              <p className="text-justify text-white text-[15px]">
+            <p className="text-justify  text-white  text-[15px]">
                 La medicina general constituye el primer nivel de atención
                 médica y es imprescindible para la prevención, detección,
                 tratamiento y seguimiento de las enfermedades crónicas
@@ -160,10 +154,10 @@ export default function Servicios() {
                 de estas enfermedades.
               </p>
             </div>
-            <label className="text-gray-500">Alergología</label>
+            <label className="text-blue-500  font-bold text-[25px]">Alergología</label>
 
             <div className="flex flex-row text-left m-5 text-blue-500  ">
-              <p className="text-justify text-white  text-[15px]">
+            <p className="text-justify  text-white text-[15px]">
                 La alergología es la especialidad que comprende el conocimiento,
                 diagnóstico y tratamiento de la patología producida por
                 mecanismos inmunológicos, con especial atención en la alergia .
@@ -192,10 +186,10 @@ export default function Servicios() {
                 comunes.
               </p>
             </div>
-            <label className="text-gray-500">Oncológica</label>
+            <label className="text-blue-500  font-bold text-[25px]">Oncológica</label>
 
             <div className="flex flex-row text-left m-5 text-blue-500  ">
-              <p className="text-justify  text-white text-[15px]">
+            <p className="text-justify  text-white  text-[15px]">
                 El tratamiento oncológico es el uso de cirugías, radiación,
                 medicamentos y otras terapias para curar el cáncer, encoger un
                 cáncer o detener la progresión de un cáncer. Existen muchos
@@ -209,10 +203,10 @@ export default function Servicios() {
                 permitirte vivir sin síntomas el mayor tiempo posible.
               </p>
             </div>
-            <label className="text-gray-500">Hematología</label>
+            <label className="text-blue-500  font-bold text-[25px]">Hematología</label>
 
             <div className="flex flex-row text-left m-5 text-blue-500  ">
-              <p className="text-justify text-white  text-[15px]">
+            <p className="text-justify  text-white text-[15px]">
                 En el Servicio de Hematología atendemos, controlamos y
                 realizamos tratamientos de pacientes adultos con patologías de
                 la sangre, ganglios linfáticos, médula ósea, entre otros.

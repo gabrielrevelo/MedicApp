@@ -8,6 +8,7 @@ const routesAdmin = require('./admin');
 const routesAuth = require('./auth');
 const routesProfile = require('./profile');
 const routesAppoinment = require('./appointment');
+const routesFavoritos = require('./favorite')
 const routesStripe = require('./stripe');
 
 /* GET home page. */
@@ -27,6 +28,9 @@ router.use('/doctors', routesDoctor);
 
 /* Patient routes */
 router.use('/patients', routesPatient);
+
+/* Patient routes */
+router.use('/favorites', routesFavoritos);
 
 /* Admin routes */
 router.use('/admins', routesAdmin);

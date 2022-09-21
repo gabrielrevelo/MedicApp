@@ -19,7 +19,7 @@ const Main = ({ doctor }) => {
             specialities={doctor.specialities}
             rating={doctor.rating}
             schedule={doctor.schedule.hour}
-            address={doctor.address}
+            address={doctor.address.split(",").slice(0, doctor.address.split(",").length-2).join(",")}
             image={doctor.image}
             price={doctor.checkUpPrice}
             details={"Full"}

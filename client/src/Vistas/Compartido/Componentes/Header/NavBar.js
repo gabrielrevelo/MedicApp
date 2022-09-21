@@ -9,7 +9,7 @@ export default function NavBar ({avaliable}){
     const imagen = Logo
     const session = window.localStorage.getItem('session')
     const user = JSON.parse(window.localStorage.getItem('User'))
-    
+    console.log(window.location,"ubicacion")
 
     return (
         <div className=''>
@@ -43,12 +43,16 @@ export default function NavBar ({avaliable}){
                     :   user.rol === 'PATIENT'?
                     <Link to={LOGOUT_PATIENT}><p className="bg-[#292F53] hover:bg-[#1479FF] font-poppins text-white py-2 px-4 rounded">Logout</p> </Link> 
                     : 
+                    window.location.href !== "http://localhost:3000/login"?
                     <Link to ='/login'>
                         <p className="bg-[#1479FF] hover:bg-[#292F53] font-poppins text-white py-2 px-4 rounded">Ingresar</p>
                     </Link>
-                    : <Link to ='/login'>
+                    :<></>
+                    : window.location.href !== "http://localhost:3000/login" ?
+                    <Link to ='/login'>
                         <p className="bg-[#1479FF] hover:bg-[#292F53] font-poppins text-white py-2 px-4 rounded">Ingresar</p>
                     </Link>
+                    :<></>
             }
             
             </div>

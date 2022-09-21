@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 const InfoData = ({className,text,icon,dato}) => {

@@ -13,7 +13,7 @@ export const PROFILE_ADMIN = '/admin'
 export const LOGOUT_ADMIN = '/admin/logout'
 export const HOME_ADMIN = '/admin/home'
 export const DOCTORS_ADMIN = '/admin/doctors'
-export const DOCTORS_ID_ADMIN = '/admin/doctors/:id'
+export const DOCTORS_ID_ADMIN = '/admin/doctors/:idDoctor'
 // export const BUY_APPOINTMENT_ADMIN = '/admin/buy/doctor/:id'
 
 

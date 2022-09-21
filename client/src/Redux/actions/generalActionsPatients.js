@@ -1,11 +1,15 @@
 
 import axios from "axios";
+// import { getfavoritos } from "../Slicer/slicer";
 import {
   getAllPatients,
   getPatientById,
   changeStatus,
   getPatientsByDates,
-  getPatientProfile
+  getPatientProfile,
+  getfavoritos,
+  clear
+  
 } from "../Slicer/slicerGeneralPatients";
 
 export const getPatient = (idPatient) => async (dispatch) => {
@@ -78,3 +82,24 @@ export const getPatientToken = () => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const getPatientFavorites = () => async (dispatch) => {
+  try {
+    const {data} = await axios('http://localhost:3004/favorites/likes',{
+      headers: { Authorization : `Bearer ${JSON.parse(window.localStorage.getItem('auth-token'))}`}
+    });
+    console.log(data.data);
+    return dispatch(getfavoritos(data.data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const clearFav = ()=> async (dispatch) => {
+  try {
+    dispatch(clear())
+  } catch (error) {
+    console.log(error);
+  }
+}
+

@@ -10,7 +10,9 @@ export const doctoresSlice = createSlice({
     filteredByCities: [],
     newFilter: [], 
     specialities: [],
-    profile: []
+    profile: [],
+    likes:false,
+    // favoritos:[]
   },
   reducers: {
     getAllDocs: (state, action) => {
@@ -123,6 +125,15 @@ export const doctoresSlice = createSlice({
       });
       state.newFilter = byPrice;
     },
+    getLikes : (state, action) => {
+      state.likes = action.payload
+    },
+    // getfavoritos : (state, action) => {
+    //   state.favoritos = action.payload
+    // },
+    clear: (state, action) =>{
+      state.detail = action.payload
+    }
   },
 });
 
@@ -134,7 +145,10 @@ export const {
   getDoctorsFiltered,
   getProfileDoctor,
   DoctorsByRating,
-  DoctorsByPrice
+  DoctorsByPrice,
+  getLikes,
+  getfavoritos,
+  clear
 } = doctoresSlice.actions;
 
 export default doctoresSlice.reducer;

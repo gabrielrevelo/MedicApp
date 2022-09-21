@@ -5,8 +5,11 @@ const bcrypt = require('bcryptjs');
 
 const controllerDoctors = {
   getAll: async (req, res, next) => {
+    const {rol} = req.query
     try {
-      const doctors = await Doctor.find();
+      let doctors;
+      if(rol === "admin") doctors = await Doctor.find();
+      else doctors = await Doctor.find({active: true});
       if (!doctors) {
         throwError(1201);
       }
@@ -146,7 +149,7 @@ const controllerDoctors = {
   },
   getTopDoctors: async (req, res, next) => {
     try {
-      const topDoctors = await Doctor.find({}).sort({ rating: -1 }).limit(8);
+      const topDoctors = await Doctor.find({active: true}).sort({ rating: -1 }).limit(8);
       return res.status(200).send(topDoctors);
     } catch (error) {
       return res.status(error.code || 500).send({ errors: error.message });

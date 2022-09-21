@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { BsPeopleFill } from 'react-icons/bs';
+import { BsPeopleFill } from 'react-icons/bs'
+import { BsFillHeartFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPatients, getPatientToken } from '../../../../Redux/actions/generalActionsPatients';
-
-import InfoData from '../../../Doctor/Componentes/Panel/componentes/InfoData';
+import { getPatientFavorites, clearFav } from '../../../../Redux/actions/generalActionsPatients';
+import InfoData from './infoData';
 import Citas from './Citas';
 import NavBar from './NavBar';
 import TopBar from './topBar';
+import Favoritos from './Favoritos';
 
 
 
@@ -27,6 +29,17 @@ export default function Paciente() {
         dispatch(getPatients())
       }, [dispatch]);
 
+      useEffect(() => {
+        dispatch(getPatientFavorites())
+        return () => {
+            dispatch(clearFav([]))
+        }
+    },[dispatch])
+
+    const doctorFavoritos = useSelector(state => state.generalPatients.favoritos)
+    const favEnable = doctorFavoritos.filter(el => el.enable === true)
+    console.log(favEnable, 'los favs');
+
   const detailPatient = JSON.parse(localStorage.getItem('User'))
   let emailLogin = detailPatient.email
 
@@ -38,18 +51,24 @@ export default function Paciente() {
     <>
     <div className="flex justify-evenly">
     <NavBar setSection={setSection} />
-        <div className= "flex flex-col px-10 py-5 gap-5 w-11/12">
-        <TopBar imgProfile={filtroPaciente[0]?.image} />
+        <div className= "flex flex-col lg:px-10 py-5 gap-5 w-11/12">
+        <TopBar imgProfile={filtroPaciente[0]?.image} setSection={setSection} />
         <div className=" rounded  h-fit mb-5 flex flex-row items-end justify-end mt-5 mr-5">
             <InfoData 
-                    className={'w-48  bg-indigo-300  h-24 rounded m-3 flex flex-col justify-around'}
+                    className={'w-48  bg-indigo-300  h-24 rounded-xl m-3 flex flex-col justify-around'}
                     text='Total citas'
                     icon = {<BsPeopleFill/>}
                     dato = {profile?.length}
             />
+            <InfoData 
+            className={'w-48 bg-orange-300 h-24 rounded-xl m-3 flex flex-col justify-around'}
+            text='Favoritos'
+            icon = {<BsFillHeartFill/>}
+            dato = {favEnable?.length}
+            />
         </div>
 
-        <div className="border p-5 shadow-md rounded"> 
+        <div className="border p-5 shadow-md rounded "> 
             {section === "principal" ? 
             <>
             <img src={filtroPaciente[0]?.image} className=" w-20 h-20 rounded-full object-cover m-4 border-solid border-2 border-[#1479FF]  " alt='foto paciente'/>
@@ -58,6 +77,7 @@ export default function Paciente() {
             </>
             : null}
             {section === "citas" ? <Citas /> : null}
+            {section === "favoritos" ? <Favoritos /> : null}
         </div>
         </div>
     </div>

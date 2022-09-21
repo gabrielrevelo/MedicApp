@@ -8,7 +8,9 @@ import {
   getDoctorsFiltered,
   getProfileDoctor,
   DoctorsByRating,
-  DoctorsByPrice
+  DoctorsByPrice,
+  getLikes,
+  clear
 } from "../Slicer/slicer";
 
 export const getDocbyId = (id) => (dispatch) => {
@@ -51,10 +53,10 @@ export const getProfileDoc = () => async (dispatch) => {
       headers: { Authorization: `Bearer ${JSON.parse(token2)}`}
     });
     dispatch(getProfileDoctor(data))
-    console.log('entro a la accion',data);
+    // console.log('entro a la accion',data);
   } catch (error) {
-    console.log(error)
-  }
+    return error
+    }
 };
 
 export const sortDocsByRating = (type) => (dispatch) => {
@@ -70,7 +72,24 @@ export const sortDocsByPrice = (type) => (dispatch) => {
 };
 
 
+export const likesDoctor = (doctorId) => async (dispatch) => {
+  try {
+    const {data} = await axios.get(`http://localhost:3004/favorites/likes/${doctorId}`, {
+      //headers: { Authorization: `Bearer ${token}`}
+      headers: { Authorization: `Bearer ${JSON.parse(window.localStorage.getItem('auth-token'))}`}
+    });
+    dispatch(getLikes(data.data[0].enable))
+    console.log('estebanaaa',data.data[0].enable);
+  } catch (error) {
+    console.log(error)
+  }
+};
 
+export const getClear = () => (dispatch) => {
+  try {
+    dispatch(clear({}));
+  } catch (e) {}
+}
 
 // const { data } = await axios.put(`${RUTA_APP}users/logout`, {}, {
 //   headers: { Authorization: `Bearer ${localStorage.getItem('auth-token')}` }

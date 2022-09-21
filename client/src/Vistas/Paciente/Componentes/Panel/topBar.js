@@ -5,7 +5,7 @@ import menu from "./icon-menu.svg"
 import { useEffect } from "react";
 import { LOGOUT_PATIENT } from "../../../../../../client/src/context/config/routes/paths";
 
-const TopBar = ({imgProfile}) => {
+const TopBar = ({imgProfile, setSection}) => {
 
   const [toggle, setToggle] = useState(false);
 
@@ -35,9 +35,20 @@ const TopBar = ({imgProfile}) => {
         <div className={styles.Dropdown} >
           <img src={menu} alt="menu-icon" className={styles.IconMenu} onClick={(e) => onClickMenu(e)} />
           <ul className={toggle ?`${styles.Menu} ${styles.MenuOpen}`: styles.Menu}>
-            <li><Link to="/admin/home">Inicio</Link></li>
-            <li>Configuración</li>
-            <Link to={LOGOUT_PATIENT}> Cerrar sesion</Link>
+            <li className="text-center"><Link to="/admin/home">Inicio</Link></li>
+            <li className="lg:hidden text-center">
+              <button onClick={() => setSection("principal")}>Principal</button>
+            </li>
+            <li className="">
+              <button>Editar Perfil</button>
+            </li>
+            <li className="lg:hidden text-center">
+              <button onClick={() => setSection("citas")}>Citas</button>
+            </li>
+            <li className="lg:hidden text-center">
+              <button onClick={() => setSection("favoritos")}>Favoritos</button>
+            </li>
+            <li className="text-center"><Link to={LOGOUT_PATIENT}> Cerrar sesion</Link></li>
           </ul>
         </div>
         

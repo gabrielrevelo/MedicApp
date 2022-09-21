@@ -22,7 +22,8 @@ export const getDoctor = (idDoctor) => async (dispatch) => {
 
 export const getDoctors = () => async (dispatch) => {
   try {
-    const patients = await axios.get("/doctors");
+    
+    const patients = await axios.get("/doctors/?rol=admin");
     return dispatch(getAllDoctors(patients.data.data));
   } catch (error) {
     console.log(error);
