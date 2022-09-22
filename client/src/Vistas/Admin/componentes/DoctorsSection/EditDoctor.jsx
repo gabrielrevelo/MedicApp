@@ -47,7 +47,7 @@ const EditDoctor = ({id, onClick, name, email, phoneNumber, license, address}) =
       !inputErrors.address 
     ) {
       props.forEach((value) => {
-        if (!input[value] === "") {
+        if (!input[value] == "") {
           values[value] = input[value];
         }
       });

@@ -35,7 +35,7 @@ const Patients = () => {
       position: 'center',
       icon: 'success',
       iconColor: '#1479FF',
-      title: 'Cambió el estado del admin',
+      title: 'Cambió el estado del paciente',
       showConfirmButton: false,
       timer: 1300
     });
@@ -74,11 +74,13 @@ const Patients = () => {
    *  @useEffect => todos los pacientes
    * */ 
   useEffect(() => {
-    dispatch(getPatients());
+    setTimeout(()=>{
+      dispatch(getPatients());
+    },700);
     return () => {
       setStatus(false);
     }
-  }, [dispatch, form, status, patients]);
+  }, [dispatch, form, status]);
 
   return (
     <>

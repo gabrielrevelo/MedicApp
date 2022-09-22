@@ -39,7 +39,7 @@ const TopBar = ({imgProfile, setSection}) => {
             <li className="lg:hidden text-center">
               <button onClick={() => setSection("principal")}>Principal</button>
             </li>
-            <li className="">
+            <li  className="hidden">
               <button>Editar Perfil</button>
             </li>
             <li className="lg:hidden text-center">

@@ -36,7 +36,7 @@ const Doctores = () => {
       position: 'center',
       icon: 'success',
       iconColor: '#1479FF',
-      title: 'Cambió el estado del admin',
+      title: 'Cambió el estado del doctor',
       showConfirmButton: false,
       timer: 1300
     });
@@ -76,11 +76,14 @@ const Doctores = () => {
    *  @useEffect => todos los doctores
    * */ 
   useEffect(() => {
-    dispatch(getDoctors());
+    setTimeout(()=>{
+      dispatch(getDoctors());
+    },700);
+
     return () => {
       setStatus(false);
     }
-  }, [dispatch, form, status, doctors]);
+  }, [dispatch, form, status]);
 
   return (
     <>

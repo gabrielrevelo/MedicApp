@@ -236,7 +236,7 @@ const controllerAuth = {
       if (doctor) {
         token = Jwt.sign({ user_id: doctor.id }, "doctortoken");
       }
-      const link = `http://localhost:3000/changePassword/${token}`;
+      const link = `https://medic-app-pf.vercel.app/changePassword/${token}`;
       mailer.sendMailForgotPassword(email, link);
       return res.send("Se ha enviado un correo de recuperacion a " + email)
     } catch (error) {

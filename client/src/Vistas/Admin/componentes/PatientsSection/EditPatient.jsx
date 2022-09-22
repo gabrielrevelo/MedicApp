@@ -45,7 +45,6 @@ const EditPatient = ({ id, onClick, name, email, phoneNumber }) => {
       });
       dispatch(editPatient(id, values));
       setInput(initialInputs);
-      onClick();
       Swal.fire({
         title: 'Edicion Exitosa',
         text: 'Se editó el paciente correctamente',
@@ -53,6 +52,7 @@ const EditPatient = ({ id, onClick, name, email, phoneNumber }) => {
         iconColor: '#1479FF',
         confirmButtonColor: '#1479FF',
       });
+      onClick();
     } else {
       Swal.fire({
         title: 'Error',

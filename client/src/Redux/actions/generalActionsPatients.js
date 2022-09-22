@@ -52,7 +52,6 @@ export const changeStatusPatient = (idPatient) => async (dispatch) => {
 };
 
 export const editPatient = (idPatient, data) => async (dispatch) => {
-  console.log("faaf", data);
   try {
     await axios.patch(`/patients/${idPatient}`, data);
     return;
